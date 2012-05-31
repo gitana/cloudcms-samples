@@ -1,0 +1,80 @@
+<?xml version='1.0'?>
+<project name="Cloud CMS JavaScript Samples" basedir="." default="update">
+
+    <property file="custom-build.properties"/>
+
+    <property file="build.properties"/>
+
+    <property name="project.dir" value="."/>
+
+    <property name="build.dir" value="${project.dir}/build"/>
+
+    <target name="clean" description="Removes all generated files">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="update-alpaca-lib" description="Update Alpaca Library">
+        <mkdir dir="${project.dir}/lib/alpaca"/>
+        <copy todir="${project.dir}/lib/alpaca">
+            <fileset dir="${alpaca.basepath}/alpaca">
+                <include name="css/alpaca*.css"/>
+                <include name="css/images/**/*"/>
+                <include name="js/*.js"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="update-ratchet-lib" description="Update Ratchet Library">
+        <mkdir dir="${project.dir}/lib/ratchet"/>
+        <copy todir="${project.dir}/lib/ratchet">
+            <fileset dir="${ratchet.basepath}">
+                <include name="js/ratchet*.js"/>
+                <include name="js/plugins/**/*"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="update-gitana-lib" description="Update Gitana JavaScript Driver">
+        <mkdir dir="${project.dir}/lib/gitana"/>
+        <copy todir="${project.dir}/lib/gitana">
+            <fileset dir="${gitana.basepath}">
+                <include name="js/gitana*.js"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="update-all-lib" description="Update all libraries"
+            depends="update-alpaca-lib,update-ratchet-lib,update-gitana-lib">
+    </target>
+
+    <target name="clean-local-deployment">
+        <mkdir dir="${local.deployment.basepath}/${app.key}"/>
+        <delete>
+            <fileset dir="${local.deployment.basepath}/${app.key}" includes="**/*"/>
+        </delete>
+    </target>
+
+    <fileset dir="${project.dir}" id="samples">
+        <include name="css/**/*"/>
+        <include name="img/**/*"/>
+        <include name="js/**/*"/>
+        <include name="lib/**/*"/>
+        <include name="templates/**/*"/>
+        <include name="schemas/**/*"/>
+        <include name="forms/**/*"/>
+        <include name="*.html"/>
+    </fileset>
+
+    <target name="full" depends="update-all-lib,clean-local-deployment">
+        <copy todir="${local.deployment.basepath}/${app.key}">
+            <fileset refid="samples"/>
+        </copy>
+    </target>
+
+    <target name="update" depends="update-all-lib">
+        <copy todir="${local.deployment.basepath}/${app.key}">
+            <fileset refid="samples"/>
+        </copy>
+    </target>
+
+</project>

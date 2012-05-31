@@ -1,0 +1,7 @@
+<script id="userReviewMetricsTemplate" type="text/x-jquery-tmpl">
+         <div class="user-reviews-average">Average Customer Rating: {{if data.averageRating}}${Math.round(data.averageRating*10)/10}{{else}}0{{/if}} out of 5.</div>
+         <div>
+            <span class="stars">${data.averageRating}</span>
+         </div>
+         <div class="user-reviews-total" >Total Customer Reviews: {{if data.totalReviews}}${data.totalReviews}{{else}}0{{/if}}.</div>
+</script>

@@ -1,0 +1,41 @@
+<script id="layoutTemplate" type="text/x-jquery-tmpl">
+    <div class="">
+        <h2>Food Web</h2>
+
+        <p>Within CloundCMS, nodes can be connected with each other through associations. We can create as many
+            associations as we want between two nodes. Each association involves a source node and a target node.
+            Association can have its own properties since association is node as well. There are two basic types of
+            associations, directed and undirected.</p>
+
+        <p> For this example, we use a list of creature nodes to model a
+            food web. Only one association type, eats, is needed to describe the food chain relation among those
+            creatures. The "eats" association can be either directed or undirected. Once you pick a creature from the
+            list, the example will show list of creatures that it eats as well as list of creatures that eat it.</p>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="form-horizontal">
+                    <fieldset>
+                        <div class="control-group">
+                            <label class="control-label" for="creature-id">Creature</label>
+
+                            <div class="controls">
+                                <select id="creature-id">
+                                    <option value="">---- Select A Creature ----</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div id="is-eaten-by" class="span6">
+                </div>
+                <div id="eats" class="span6">
+                </div>
+            </div>
+            <div class="error span12"></div>
+        </div>
+    </div>
+</script>

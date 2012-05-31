@@ -1,0 +1,27 @@
+{
+    "renderForm":true,
+    "form":{
+        "buttons":{
+            "save":true,
+            "submit":false,
+            "reset":false
+        }
+    },
+    "fields":{
+        "rating":{
+            "type":"select",
+            "label": "Your Rating",
+            "helper": "Select your rating for this item.",
+            "optionLabels": ["Excellent", "Good", "Ok", "Mediocre","Horrible"]
+        },
+        "title":{
+            "label": "Review Title",
+            "helper": "Enter title of your review."
+        },
+        "description":{
+            "type":"textarea",
+            "label": "Your Review",
+            "helper": "Tell us more about this item."
+        }
+    }
+}

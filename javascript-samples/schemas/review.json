@@ -1,0 +1,23 @@
+{
+    "type":"object",
+    "properties":{
+        "rating":{
+            "title":"Rating",
+            "description":"User rating the product or promotion.",
+            "type":"number",
+            "enum":[5,4,3,2,1],
+            "default": 5,
+            "required": true
+        },
+        "title":{
+            "title":"Review title",
+            "description":"User review title.",
+            "type":"string"
+        },
+        "description":{
+            "title":"Review details",
+            "description":"User review details.",
+            "type":"string"
+        }
+    }
+}

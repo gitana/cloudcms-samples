@@ -1,0 +1,44 @@
+<script id="sampleCodeTemplate" type="text/x-jquery-tmpl">
+
+    {{if samplecode}}
+    <div class="">
+        {{if samplecode.title}}
+        <h2>${samplecode.title}</h2>
+        {{/if}}
+        {{if samplecode.description}}
+        <p>{{html samplecode.description}}</p>
+        {{/if}}
+    </div>
+    {{if samplecode.samples}}
+    {{each(key, sample) samplecode.samples}}
+    <div class="row-fluid">
+        <div class="span12" id="${key}">
+            <h3>${sample.title}</h3>
+
+            <p>{{html sample.description}}</p>
+
+            <div class="controls">
+                <textarea class="input-xxlarge sample-code" id="${key}-code" rows="10" style="display:none;">${sample.code}</textarea>
+            </div>
+
+            <div id="${key}-code-view">
+                <pre class="prettyprint linenums">{{html sample.code.replace(/</g,'&lt;').replace(/>/g,'&gt;')}}</pre>
+            </div>
+
+            <div class="btn-toolbar">
+                <a class="btn run" target-id="${key}" href="javascript:void(0);">Run &raquo;</a>
+                <a class="btn view" target-id="${key}" href="javascript:void(0);" style="display:none;">View Code</a>
+                <a class="btn edit" target-id="${key}" href="javascript:void(0);">Edit Code</a>
+                <a class="btn reset" target-id="${key}" href="javascript:void(0);">Reset</a>
+            </div>
+
+            <p id="${key}-result"></p>
+
+            <p id="${key}-error"></p>
+        </div>
+    </div>
+    {{/each}}
+    {{/if}}
+    {{/if}}
+
+</script>

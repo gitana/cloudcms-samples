@@ -1,0 +1,192 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.logo {
+    background: url("../img/cloudcms-icon.png") no-repeat scroll 0 0 transparent;
+    padding: 5px 10px 5px 30px;
+}
+
+.sidebar-nav {
+    padding: 9px 0;
+}
+
+.sidebar-nav .btn-group {
+    margin: 3px 10px;
+}
+
+footer p {
+    text-align: center;
+}
+
+/* Sample Code */
+textarea.sample-code {
+    font-family: "Courier New";
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+/* Fortune Cookie */
+#fortune-cookie {
+    width: 463px;
+    height: 196px;
+}
+
+#fortune-cookie-message {
+    padding: 70px 0 0 110px;
+    text-align: center;
+    width: 250px;
+    color: #2953a7;
+}
+
+#fortune-cookie-timestamp {
+    margin-top: 30px;
+    float: right;
+    clear: both;
+}
+
+#fortune-cookie-toolbar {
+    float: right;
+    clear: both;
+}
+
+/* Query Examples */
+.query-examples li, .traverse-examples li {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#query-results li, #traverse-results li {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* User Reviews */
+span.stars, span.stars span {
+    display: block;
+    background: url(../img/stars.png) 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
+
+.user-reviews {
+    border: 1px solid #999999;
+}
+
+.user-reviews-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.user-review {
+    border: solid #999999;
+    border-width: 1px 0 0 0;
+}
+
+.user-review-left {
+    display: inline-block;
+    vertical-align: top;
+    width: 150px;
+    padding: 10px
+}
+
+.user-review-timestamp {
+    font-size: 0.8em;
+}
+
+.user-review-user {
+    font-size: 1.0em;
+    text-decoration: underline;
+}
+
+.user-review-rating {
+    padding-top: 20px;
+}
+
+.user-review-right {
+    display: inline-block;
+    vertical-align: top;
+    width: 350px;
+    padding: 10px;
+}
+
+.user-review-title {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.user-review-details {
+    padding: 4px 0 8px 0;
+}
+
+.user-review-indicators {
+    border: dashed #999999;
+    border-width: 1px 0 0px 0;
+}
+
+.user-review-tools {
+
+}
+
+.user-reviews-summary {
+    border: 1px solid #999999;
+}
+
+.user-reviews-metrics {
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px;
+}
+
+.user-reviews-button {
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px
+}
+
+.helpfulindicator, .helpfulindicator-toolbar {
+    padding: 2px 0 2px 0;
+}
+
+.spamindicator, .spamindicator-toolbar {
+    padding: 2px 0 2px 0;
+}
+
+#user_reviews_page_bar {
+    padding-left: 10px;
+}
+
+.product-promotion-title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.product-promotion-price {
+    padding: 10px 0 20px 0;
+}
+
+.product-promotion-price .price {
+    font-size: 2em;
+    color: #ff0000;
+}
+
+.product-promotion-price .unit {
+    color: #ff0000;
+}
+
+.product-promotion .store {
+    font-weight: bold;
+}
+
+.product-promotion .date {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+

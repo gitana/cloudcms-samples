@@ -1,0 +1,16 @@
+<script id="layoutTemplate" type="text/x-jquery-tmpl">
+    {{if page.dashlets}}
+    {{each(i, row) page.dashlets}}
+    <div class="row-fluid">
+        {{each(j, dashlet) row}}
+        <div class="{{if dashlet.grid}}${dashlet.grid}{{else}}span12{{/if}}"
+        {{if dashlet.id}}id="${dashlet.id}"{{/if}}
+        {{if dashlet.gadget}}gadget="${dashlet.gadget}"{{/if}}
+        {{if dashlet.subscription}}subscription="${dashlet.subscription}"{{/if}}>
+    </div>
+    {{/each}}
+    </div>
+    {{/each}}
+    {{/if}}
+
+</script>

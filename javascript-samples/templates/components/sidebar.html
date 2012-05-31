@@ -1,0 +1,45 @@
+<script id="sidebarTemplate" type="text/x-jquery-tmpl">
+
+
+    <div class="btn-group">
+        <button class="btn btn-info">JavaScript Samples</button>
+        <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a href="#/">JavaScript Samples</a></li>
+            <li><a href="#/">Java Samples</a></li>
+            <!--
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            -->
+        </ul>
+    </div>
+    <!-- /btn-group -->
+
+    {{if sidebar && sidebar.items}}
+    <ul class="nav nav-list">
+        {{each(i, item) sidebar.items}}
+        {{if item.header}}
+        <li class="nav-header">${item.title}</li>
+        {{else}}
+        <li {{if item.current}}class="active"{{/if}}>
+        <a href="{{if item.link}}${item.link}{{else}}javascript:void(0);{{/if}}" {{if item.items}}class="nav-sub-items"{{/if}}>
+            {{if item.items}}<i class="{{if item.current}}icon-chevron-down icon-white{{else}}icon-chevron-right{{/if}}"></i></i>{{/if}}${item.title}
+        </a>
+        {{if item.items}}
+        <ul class="nav nav-list sub-nav" {{if !item.current}}style="display:none;"{{/if}}>
+            {{each(j, subItem) item.items}}
+            <li {{if subItem.current}}class="active"{{/if}}>
+            <a href="{{if subItem.link}}${subItem.link}{{else}}javascript:void(0);{{/if}}">
+                </i>${subItem.title}
+            </a>
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+        </li>
+        {{/if}}
+        {{/each}}
+    </ul>
+    {{/if}}
+
+</script>

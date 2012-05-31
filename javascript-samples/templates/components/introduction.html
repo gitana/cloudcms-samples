@@ -1,0 +1,100 @@
+<script id="introductionTemplate" type="text/x-jquery-tmpl">
+    <h2>Introduction</h2>
+
+    <p>This project provides a rich set of examples to help you get
+        started with developing HTML5/JavaScript based applications on top of Cloud CMS using its JavaScript Driver.</p>
+
+    <p>Samples are divided into three main categories, General, Component and Mini App. General samples are focus on
+        APIs and techniques that will be used across all JavaScript based Cloud CMS applications. Component
+        samples show you how to use APIs of an individual Cloud CMS component such as Repository, Branch, Node etc. Once
+        you get familiar with Cloud CMS JavaScript driver, you may also want to check out mini sample applications to
+        learn how to combine those JavaScript APIs.</p>
+
+    <p>To get started, select a menu item from the left sidebar and then browse to the sample that you are interested
+        in. Each sample comes with a toolbar which has Run, Edit Code/View Code and Reset button. Click on the Run
+        button to
+        run the sample inline. If you want to change the code, simply click on the edit button and then make you
+        modifications. Clicking on Reset button will clean up the sample output and error DIV and reset the sample code
+        to its original.</p>
+
+    <p>Each sample has been assigned a unique ID which will be used to locate DIVs for its output and error. For
+        example, following code will print "Hello World" in the output DIV of the sample chaining01</p>
+
+    <pre class="prettyprint linenums">$('#chaining01-result').html('Hello World');</pre>
+
+    <p>Almost all samples use a default client, <i>Samples.defaultClient</i>, with a default error handler,
+        <i>Samples.defaultErrorHandler</i>. The default client is authenticated to the
+        Demo Tenant in the Cloud CMS as user demo who is the owner of the tenant.</p>
+
+    <pre class="prettyprint linenums">Samples.defaultClient = function() {\n
+  var gitana = new Gitana({\n
+    "clientId": "676e3450-6131-46c2-99cc-496aa2ad80fa",\n
+    "clientSecret": "5fGkvesH/tWEMX6SpevL54rY6iJK5ADzLH963sif2ljrWvFOhV2zXv6rSpLF2uMWlJ9SG0uEO9uQO4JZac0i7DZquA/5W8ixJwhj76g0Ksk="\n
+  });\n
+  return gitana.authenticate({\n
+    "username": "demo",\n
+    "password": "demo"\n
+  });\n
+};</pre>
+
+    <p>The error handler will print error
+        message in the error DIV of the corresponding sample whenever an error happens and gets caught.</p>
+
+    <pre class="prettyprint linenums">Samples.defaultErrorHandler = function(error, divId) { \n
+  $('#' + divId + '-error').addClass('alert alert-error').empty().html(error.message);\n
+};</pre>
+
+    <p>Some samples also make references to the following pre-built Cloud CMS objects that are either created or
+        populated when you load this project.</p>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Object Reference</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Samples.sampleRepository</td>
+            <td>Sample repository</td>
+        </tr>
+        <tr>
+            <td>Samples.sampleStack</td>
+            <td>Sample stack</td>
+        </tr>
+        <tr>
+            <td>Samples.sampleUser</td>
+            <td>Sample user</td>
+        </tr>
+        <tr>
+            <td>Samples.sampleAuthenticationGrant</td>
+            <td>Authentication grant for the default client</td>
+        </tr>
+        <tr>
+            <td>Samples.sampleOpenDriverClient</td>
+            <td>Sample client that supports open driver authentication</td>
+        </tr>
+        <tr>
+            <td>Samples.sampleOpenDriverAuthenticationGrant</td>
+            <td>Authentication grant for the sample open driver client</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>Run samples locally</h3>
+
+    <p>If you prefer to run the samples locally, you will need to take the following steps to set them up:</p>
+    <h4>1. Install the samples</h4>
+
+    <p>You will need to download the samples and place them under your local web server, e.g. Apache web server.</p>
+
+    <h4>2. Configure Proxy</h4>
+
+    <p>Add following lines to your web server configuration file and then restart your web server.</p>
+
+<pre class="prettyprint linenums">ProxyRequests Off\n
+ProxyPassInterpolateEnv On\n
+ProxyPass /proxy http://api.cloudcms.com:80 interpolate\n
+ProxyPassReverse /proxy http://api.cloudcms.com:80 interpolate\n
+ProxyPassReverseCookieDomain localhost ${HTTP_HOST} interpolate\n</pre>
+</script>

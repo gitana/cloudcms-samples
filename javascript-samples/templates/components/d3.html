@@ -1,0 +1,25 @@
+<script id="d3Template" type="text/x-jquery-tmpl">
+
+    {{if d3}}
+    <article class="panel">
+        {{if d3.title}}
+        <header class="divider">
+            <h2>{{if d3.icon}}<img src='${d3.icon}'/>{{/if}}${d3.title}</h2><span></span>
+        </header>
+        {{/if}}
+        {{if d3.layout && d3.layout == 'column'}}
+        <div class="d3 grid8 player-border" style="width:920px;margin: 0 15px 15px 0;">
+            <div class="player-init-button"></div>
+        </div>
+        <div class="d3-form grid4 player-border" style="display:none;">
+        </div>
+        {{else}}
+        <div class="d3-form">
+        </div>
+        <div class="d3">
+        </div>
+        {{/if}}
+    </article>
+    {{/if}}
+
+</script>

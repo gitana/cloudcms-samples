@@ -1,0 +1,25 @@
+<script id="userReviewsTemplate" type="text/x-jquery-tmpl">
+    <div class="user-reviews">
+        <h4>Customer Reviews:</h4>
+        {{each data.rows}}
+        {{if _type == 'n:comment'}}
+        <div id="${_doc}"  class="user-review">
+            <div class="user-review-left">
+                <div class="user-review-timestamp">${_system.modified_on.timestamp}</div>
+                <div class="user-review-user">${_system.modified_by}</div>
+                <div class="user-review-rating">Rating: ${rating} out of 5</div>
+                <div>
+                    <span class="stars">${rating}</span>
+                </div>
+            </div>
+            <div class="user-review-right">
+                <div class="user-review-title">${title}</div>
+                <div class="user-review-details">${description}</div>
+                <div class="user-review-indicators">
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        {{/each}}
+    </div>
+</script>

@@ -1,0 +1,52 @@
+<script id="layoutTemplate" type="text/x-jtraverse-tmpl">
+    <div class="">
+        <h2>Traverse Examples</h2>
+
+        <p>Gitana Cloud CMS lets you traverse from a given node within the node graph through a traversal expression
+            which contains association type, association direction or depth.</p>
+
+        <p> Click on any sample traverse and you will
+            see the traverse expression and traverse results.
+        </p>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <ol class="traverse-examples">
+            </ol>
+        </div>
+        <div class="span12" style="margin-left:0px;">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="repository-query-json">Repository</label>
+
+                    <div class="controls">
+                        <textarea id="repository-query-json" rows="4" class="input-xxlarge"></textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="source-node">Source Node</label>
+                    <input type="text" id="source-node" class="input-xxlarge">
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="traverse-json">Traverse</label>
+                    <textarea id="traverse-json" rows="10" class="input-xxlarge"></textarea>
+                </div>
+                <div class="control-group">
+                    <button class="btn btn-primary" id="traverse-button">Traverse</button>
+                </div>
+            </fieldset>
+        </div>
+        <div class="span12" style="margin-left:0px;">
+            <div id="traverse-results">
+            </div>
+        </div>
+        <div class="span12" style="margin-left:0px;">
+            <div id="traverse-error">
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <pre class="prettyprint linenums">
+        </pre>
+    </div>
+</script>

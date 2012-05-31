@@ -1,0 +1,18 @@
+<script id="userReviewTemplate" type="text/x-jquery-tmpl">
+    <div id="${_doc}" class="user-review">
+        <div class="user-review-left">
+            <div class="user-review-timestamp"></div>
+            <div class="user-review-user"></div>
+            <div class="user-review-rating">Rating: ${data.rating} out of 5</div>
+            <div>
+                <span class="stars">${data.rating}</span>
+            </div>
+        </div>
+        <div class="user-review-right">
+            <div class="user-review-title">${data.title}</div>
+            <div class="user-review-details">${data.description}</div>
+            <div class="user-review-indicators">
+            </div>
+        </div>
+    </div>
+</script>
