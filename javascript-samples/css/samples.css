@@ -51,6 +51,10 @@ textarea.sample-code {
     clear: both;
 }
 
+button#new_button {
+    margin-top: 180px;
+}
+
 /* Query Examples */
 .query-examples li, .traverse-examples li {
     text-decoration: underline;

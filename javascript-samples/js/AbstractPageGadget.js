@@ -19,7 +19,7 @@
 
         prettifyCode: function(el) {
             $('body').unbind('swap').bind('swap', function(event, param) {
-                if ($('pre').html()) {
+                if ($('pre').html() && $('pre ol.linenums').length == 0) {
                     // make code pretty
                     $('pre').html($('pre').html().replace(/\\n/g, '\n'));
                     window.prettyPrint && prettyPrint();

@@ -63,6 +63,7 @@
         <include name="schemas/**/*"/>
         <include name="forms/**/*"/>
         <include name="*.html"/>
+        <include name="*.txt"/>
     </fileset>
 
     <target name="full" depends="update-all-lib,clean-local-deployment">

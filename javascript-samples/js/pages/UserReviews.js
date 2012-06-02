@@ -63,76 +63,77 @@
                 var renderReviews = function (pageNumber) {
                     var userReviewsDiv = $('#user_reviews').empty().append('<div class="user-reviews-title">Customer Reviews:</div>');
                     var branch = promotionNode.getBranch();
-                    var currentUserId = promotionNode.getDriver().getAuthInfo().getPrincipalDomainId() + "/" + promotionNode.getDriver().getAuthInfo().getPrincipalId();
+                    var authInfo = promotionNode.getDriver().getAuthInfo();
+                    var currentUserId = authInfo.getPrincipalDomainId() + "/" + authInfo.getPrincipalId();
                     branch.trap(function(error) {
                     }).readPersonNode(currentUserId, true).then(function() {
-                            var personNode = this;
-                            promotionNode.reload().outgoingAssociations("a:has_comment", {
-                                "skip": pageNumber * pageSize,
-                                "limit": pageSize,
-                                "sort": {
-                                    '_system.modified_on.ms': -1
-                                }
-                            }).totalRows(function(totalRows) {
-                                    renderPageBar(totalRows, pageNumber);
-                                }).each(function() {
-                                    var associationNode = this;
-                                    associationNode.readTargetNode().then(function() {
-                                        var commentNode = this;
-                                        var userReviewDiv = $("<div id='" + commentNode.getId() + "'  class='user-review'>");
-                                        userReviewsDiv.append(userReviewDiv);
-                                        userReviewDiv.alpaca({
-                                            "view" : {
-                                                "globalTemplate": '/javascript-samples/templates/pages/user-reviews/UserReview.html'
-                                            },
-                                            "data": commentNode.object,
-                                            "postRender": function (renderedReviews) {
-                                                $('.user-review-timestamp', userReviewDiv).html(commentNode.getSystemMetadata().getModifiedOn().getTimestamp());
-                                                $('.user-review-user', userReviewDiv).html(commentNode.getSystemMetadata().getModifiedBy());
-                                                $('span.stars').stars();
-                                                var reviewIndicator = $('<div id="' + associationNode.getTargetNodeId() + '-indicator"></div>');
-                                                reviewIndicator.prependTo($('#' + associationNode.getTargetNodeId() + ' .user-review-indicators'));
-                                                reviewIndicator.alpaca({
-                                                    "view" : {
-                                                        "globalTemplate": '/javascript-samples/templates/pages/user-reviews/UserReviewIndicators.html'
-                                                    },
-                                                    "data": associationNode.object,
-                                                    "postRender" : function(renderedReviewIndicatorsField) {
-                                                        $('.helpfulindicator', renderedReviewIndicatorsField.container).html(getHelpfulStats(commentNode));
-                                                        $('.spamindicator', renderedReviewIndicatorsField.container).html(getSpamStats(commentNode));
+                        var personNode = this;
+                        promotionNode.reload().outgoingAssociations("a:has_comment", {
+                            "skip": pageNumber * pageSize,
+                            "limit": pageSize,
+                            "sort": {
+                                '_system.modified_on.ms': -1
+                            }
+                        }).totalRows(function(totalRows) {
+                            renderPageBar(totalRows, pageNumber);
+                        }).each(function() {
+                            var associationNode = this;
+                                associationNode.readTargetNode().then(function() {
+                                    var commentNode = this;
+                                    var userReviewDiv = $("<div id='" + commentNode.getId() + "'  class='user-review'>");
+                                    userReviewsDiv.append(userReviewDiv);
+                                    userReviewDiv.alpaca({
+                                        "view" : {
+                                            "globalTemplate": '/javascript-samples/templates/pages/user-reviews/UserReview.html'
+                                        },
+                                        "data": commentNode.object,
+                                        "postRender": function (renderedReviews) {
+                                            $('.user-review-timestamp', userReviewDiv).html(commentNode.getSystemMetadata().getModifiedOn().getTimestamp());
+                                            $('.user-review-user', userReviewDiv).html(commentNode.getSystemMetadata().getModifiedBy());
+                                            $('span.stars').stars();
+                                            var reviewIndicator = $('<div id="' + associationNode.getTargetNodeId() + '-indicator"></div>');
+                                            reviewIndicator.prependTo($('#' + associationNode.getTargetNodeId() + ' .user-review-indicators'));
+                                            reviewIndicator.alpaca({
+                                                "view" : {
+                                                    "globalTemplate": '/javascript-samples/templates/pages/user-reviews/UserReviewIndicators.html'
+                                                },
+                                                "data": associationNode.object,
+                                                "postRender" : function(renderedReviewIndicatorsField) {
+                                                    $('.helpfulindicator', renderedReviewIndicatorsField.container).html(getHelpfulStats(commentNode));
+                                                    $('.spamindicator', renderedReviewIndicatorsField.container).html(getSpamStats(commentNode));
 
-                                                        var helpfulButton = $('.helpfulbutton', renderedReviewIndicatorsField.container);
-                                                        helpfulButton.click(function() {
-                                                            Chain(personNode).associate(commentNode, 'a:deems_helpful').then(function() {
-                                                                this.subchain(commentNode).reload().then(function() {
-                                                                    $('.helpfulindicator', renderedReviewIndicatorsField.container).html(getHelpfulStats(this));
-                                                                });
+                                                    var helpfulButton = $('.helpfulbutton', renderedReviewIndicatorsField.container);
+                                                    helpfulButton.click(function() {
+                                                        Chain(personNode).associate(commentNode, 'a:deems_helpful').then(function() {
+                                                            this.subchain(commentNode).reload().then(function() {
+                                                                $('.helpfulindicator', renderedReviewIndicatorsField.container).html(getHelpfulStats(this));
                                                             });
                                                         });
-                                                        var unhelpfulButton = $('.unhelpfulbutton', renderedReviewIndicatorsField.container);
-                                                        unhelpfulButton.click(function() {
-                                                            Chain(personNode).associate(commentNode, 'a:deems_unhelpful').then(function() {
-                                                                this.subchain(commentNode).reload().then(function() {
-                                                                    $('.helpfulindicator', renderedReviewIndicatorsField.container).html(getHelpfulStats(this));
-                                                                });
+                                                    });
+                                                    var unhelpfulButton = $('.unhelpfulbutton', renderedReviewIndicatorsField.container);
+                                                    unhelpfulButton.click(function() {
+                                                        Chain(personNode).associate(commentNode, 'a:deems_unhelpful').then(function() {
+                                                            this.subchain(commentNode).reload().then(function() {
+                                                                $('.helpfulindicator', renderedReviewIndicatorsField.container).html(getHelpfulStats(this));
                                                             });
                                                         });
-                                                        var spamIndicatorButton = $('.spambutton', renderedReviewIndicatorsField.container);
-                                                        spamIndicatorButton.click(function() {
-                                                            Chain(personNode).associate(commentNode, 'a:deems_spam').then(function() {
-                                                                this.subchain(commentNode).reload().then(function() {
-                                                                    $('.spamindicator', renderedReviewIndicatorsField.container).html(getSpamStats(this));
-                                                                });
+                                                    });
+                                                    var spamIndicatorButton = $('.spambutton', renderedReviewIndicatorsField.container);
+                                                    spamIndicatorButton.click(function() {
+                                                        Chain(personNode).associate(commentNode, 'a:deems_spam').then(function() {
+                                                            this.subchain(commentNode).reload().then(function() {
+                                                                $('.spamindicator', renderedReviewIndicatorsField.container).html(getSpamStats(this));
                                                             });
                                                         });
-                                                    }
-                                                });
-                                            }
-                                        });
+                                                    });
+                                                }
+                                            });
+                                        }
                                     });
                                 });
+                            });
                         });
-                };
+                    };
 
                 var displayReviewMetrics = function () {
                     promotionNode.reload().then(function() {

@@ -48,22 +48,29 @@
                 };
 
                 var displayFortuneCookieMessage = function(node, messages) {
-                    $('#fortune-cookie').empty().append('<div id="fortune-cookie-message"><div>' + node.get('message') + '</div><div>Lucky Numbers: '
-                        + node.get('luckNumbers').join(',') + '</div>'
+                    $('#fortune-cookie').empty().append('<div id="fortune-cookie-message">'
+                        + '<div>' + node.get('message') + '</div> '
+                        + '<div>Lucky Numbers: ' + node.get('luckNumbers').join(',') + '</div>'
                         + '</div>');
-                    $('#fortune-cookie').append('<p id="fortune-cookie-timestamp">' + node.getSystemMetadata().getModifiedBy() + ' @ ' + node.getSystemMetadata().getModifiedOn()["timestamp"]
-                        + '</p><div class="btn-toolbar" id="fortune-cookie-toolbar"><button id="update_button" class="btn">Update</button><button id="delete_button" class="btn">Delete</button></div>');
+                    $('#fortune-cookie').append('<p id="fortune-cookie-timestamp">'
+                        + node.getSystemMetadata().getModifiedBy() + ' @ ' + node.getSystemMetadata().getModifiedOn()["timestamp"]
+                        + '</p>'
+                        + '<div class="btn-toolbar" id="fortune-cookie-toolbar">'
+                        + '<button id="update_button" class="btn">Update</button><button id="delete_button" class="btn">Delete</button>'
+                        + '</div>');
                     $('#delete_button').click(function() {
                         var branch = node.getBranch();
-                        node.del().then(function() {
-                            $('#fortune-cookie').empty().append('<div class="btn-toolbar" id="fortune-cookie-toolbar"><button id="new_button" class="btn">Generate New</button></div></div>');
+                        Chain(node).del().then(function() {
+                            $('#fortune-cookie').empty().append('<div class="btn-toolbar" id="fortune-cookie-toolbar">'
+                                + '<button id="new_button" class="btn">Generate New</button>'
+                                + '</div>');
                             $('#new_button').click(function() {
-                                createFortuneCookieMessage(branch, messages);
+                                createFortuneCookieMessage(Chain(branch), messages);
                             });
                         });
                     });
                     $('#update_button').click(function() {
-                        updateFortuneCookieMessage(node, messages);
+                        updateFortuneCookieMessage(Chain(node), messages);
                     });
                 };
 
@@ -71,24 +78,23 @@
                     "sdk_version": "0.1",
                     "sdk_bundle": "fortunecookie"
                 }).keepOne().then(function() {
-                        this.readBranch('master').readNode('fortunecookie:messages').then(function() {
-                            var messages = this.get('messages');
-                            this.attachment('cookie').then(function() {
-                                $('#fortune-cookie').css({
-                                    "background": "url('" + this.getDownloadUri() + "') no-repeat"
-                                });
+                    this.readBranch('master').readNode('fortunecookie:messages').then(function() {
+                        var messages = this.get('messages');
+                        this.attachment('cookie').then(function() {
+                            $('#fortune-cookie').css({
+                                "background": "url('" + this.getDownloadUri() + "') no-repeat"
                             });
-                            var branch = this.getBranch();
-                            this.subchain(branch).trap(
-                                function(error) {
-                                    //if (error.http.status == 404) {
-                                    createFortuneCookieMessage(branch, messages);
-                                    //}
-                                }).readNode("fortunecookie:cookie").then(function() {
-                                    updateFortuneCookieMessage(this, messages);
-                                });
+                        });
+                        var branch = this.getBranch();
+                        this.subchain(branch).trap(function(error) {
+                            //if (error.http.status == 404) {
+                            createFortuneCookieMessage(branch, messages);
+                            //}
+                        }).readNode("fortunecookie:cookie").then(function() {
+                            updateFortuneCookieMessage(this, messages);
                         });
                     });
+                });
             },
 
             index: function(el) {
