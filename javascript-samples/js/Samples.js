@@ -204,8 +204,7 @@
                 "password": "demo"
             },
             "repository": {
-                "sdk_version": "0.1",
-                "sdk_bundle": "alpaca-examples"
+                "title": "Store Content"
             },
             "error" : function(error) {
 

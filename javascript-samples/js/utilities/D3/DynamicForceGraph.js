@@ -1,43 +1,16 @@
 (function($) {
     Samples.Utils.D3.dynamicForceGraph = function(query, divId, data, queryForm) {
-        var links = [
-            {source: "Microsoft", target: "Amazon", type: "licensing"},
-            {source: "Microsoft", target: "HTC", type: "licensing"},
-            {source: "Samsung", target: "Apple", type: "suit"},
-            {source: "Motorola", target: "Apple", type: "suit"},
-            {source: "Nokia", target: "Apple", type: "resolved"},
-            {source: "HTC", target: "Apple", type: "suit"},
-            {source: "Kodak", target: "Apple", type: "suit"},
-            {source: "Microsoft", target: "Barnes & Noble", type: "suit"},
-            {source: "Microsoft", target: "Foxconn", type: "suit"},
-            {source: "Oracle", target: "Google", type: "suit"},
-            {source: "Apple", target: "HTC", type: "suit"},
-            {source: "Microsoft", target: "Inventec", type: "suit"},
-            {source: "Samsung", target: "Kodak", type: "resolved"},
-            {source: "LG", target: "Kodak", type: "resolved"},
-            {source: "RIM", target: "Kodak", type: "suit"},
-            {source: "Sony", target: "LG", type: "suit"},
-            {source: "Kodak", target: "LG", type: "resolved"},
-            {source: "Apple", target: "Nokia", type: "resolved"},
-            {source: "Qualcomm", target: "Nokia", type: "resolved"},
-            {source: "Apple", target: "Motorola", type: "suit"},
-            {source: "Microsoft", target: "Motorola", type: "suit"},
-            {source: "Motorola", target: "Microsoft", type: "suit"},
-            {source: "Huawei", target: "ZTE", type: "suit"},
-            {source: "Ericsson", target: "ZTE", type: "suit"},
-            {source: "Kodak", target: "Samsung", type: "resolved"},
-            {source: "Apple", target: "Samsung", type: "suit"},
-            {source: "Kodak", target: "RIM", type: "suit"},
-            {source: "Nokia", target: "Qualcomm", type: "suit"}
-        ];
 
-        var nodes = {};
+        var nodes = data.nodes;
+        var links = data.links;
 
 // Compute the distinct nodes from the links.
+
         links.forEach(function(link) {
             link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
             link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
         });
+
 
         var w = 960, h = 500;
 
@@ -57,16 +30,16 @@
 
 // Per-type markers, as they don't inherit styles.
         svg.append("svg:defs").selectAll("marker")
-            .data(["suit", "licensing", "resolved"])
+            .data(["lotr_seeking"])
             .enter().append("svg:marker")
             .attr("id", String)
             .attr("viewBox", "0 -5 10 10")
-            .attr("refX", 15)
-            .attr("refY", -1.5)
+            .attr("refX", 20)
+            .attr("refY", -2.0)
             .attr("markerWidth", 6)
             .attr("markerHeight", 6)
             .attr("orient", "auto")
-            .append("svg:path")
+            .append("path")
             .attr("d", "M0,-5L10,0L0,5");
 
         var path = svg.append("svg:g").selectAll("path")
@@ -105,6 +78,40 @@
                 return d.name;
             });
 
+        var getTooltip = function(d) {
+
+            var title = d['fullName'] ? d['fullName'] : d['name'];
+            var gender = d['gender'] ? d['gender'] : "";
+            var biography = d['biography'] ? d['biography'] : "";
+
+            var tooltipDetails = "<div class='tooltip-header'>" + title + "</div>";
+            tooltipDetails += "<div class='tooltip-body'>";
+            if (d["avatar"]) {
+                tooltipDetails += "<img class='tooltip-thumbnail' src='" + d["avatar"] + "'/>";
+            }
+            tooltipDetails += "<div style='clear:both'></div>";
+            if (gender) {
+                tooltipDetails += "Gender: " + gender;
+            }
+            if (biography) {
+                tooltipDetails += "<br/>Bio: " + biography + "</div>";
+            }
+            tooltipDetails += "</div>";
+
+            return tooltipDetails;
+        };
+
+        $('g circle').tipsy({
+            live : true,
+            gravity : 'n',
+            html: true,
+            trigger : 'hover',
+            title: function() {
+                var d = this.__data__;
+                return getTooltip(d);
+            }
+        });
+
 // Use elliptical arc path segments to doubly-encode directionality.
         function tick() {
             path.attr("d", function(d) {
@@ -112,13 +119,27 @@
                 return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
             });
 
-            circle.attr("transform", function(d) {
+            circle.attr("r",function(d) {
+                if (d.name == "The One Ring") {
+                    return 10;
+                } else {
+                    return 6;
+                }
+            }).attr("class",function(d) {
+                if (d.gender && d.gender == 'female') {
+                    return "female";
+                } else if (d.name == "The One Ring") {
+                    return "ring";
+                }
+            }).attr("transform", function(d) {
                 return "translate(" + d.x + "," + d.y + ")";
             });
+
 
             text.attr("transform", function(d) {
                 return "translate(" + d.x + "," + d.y + ")";
             });
+
         }
     }
 

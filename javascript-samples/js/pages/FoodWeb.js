@@ -20,8 +20,7 @@
                 Samples.defaultClient().trap(function(error){
 
                 }).queryRepositories({
-                        "sdk_version": "0.1",
-                        "sdk_bundle": "creatures"
+                    "title": "Creatures Content"
                 }).keepOne().then(function() {
                     this.readBranch('master').queryNodes({
                         "_type" : "creatures:creature"

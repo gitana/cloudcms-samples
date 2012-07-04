@@ -17,7 +17,7 @@
 
             setupUserReviews : function() {
 
-                var promotionNodeId = "alpacaexamples:binderpromotion";
+                var promotionNodeId = "store:binderpromotion";
                 var promotionNode;
                 var promotionDiv = $('#promotion');
                 var connector = Samples.AlpacaConnector;

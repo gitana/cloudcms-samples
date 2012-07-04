@@ -1,0 +1,131 @@
+.tipsy {
+    position: absolute;
+    font-size: 10px;
+    z-index: 100000;
+    padding: 5px;
+}
+
+.tipsy-inner {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #555555), color-stop(100%, #333333));
+    -webkit-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1), inset 0px 1px #888888;
+    -moz-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1), inset 0px 1px #888888;
+    background: -webkit-linear-gradient(top, #555555 0%, #333333 100%);
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1), inset 0px 1px #888888;
+    background: -moz-linear-gradient(top, #555555 0%, #333333 100%);
+    background: -ms-linear-gradient(top, #555555 0%, #333333 100%);
+    background: -o-linear-gradient(top, #555555 0%, #333333 100%);
+    background: linear-gradient(top, #555555 0%, #333333 100%);
+    text-shadow: 0px 1px #000000;
+    -webkit-border-radius: 3px;
+    border: 1px solid #222222;
+    padding: 5px 8px 4px 8px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+    max-width: 200px;
+    color: #ffffff;
+}
+
+.tipsy-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 5px dashed #222222;
+}
+
+.tipsy-arrow-n {
+    border-bottom-color: #222222;
+}
+
+.tipsy-arrow-s {
+    border-top-color: #222222;
+}
+
+.tipsy-arrow-e {
+    border-left-color: #222222;
+}
+
+.tipsy-arrow-w {
+    border-right-color: #222222;
+}
+
+.tipsy-n .tipsy-arrow {
+    top: 0px;
+    left: 50%;
+    margin-left: -5px;
+    border-bottom-style: solid;
+    border-top: none;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+.tipsy-nw .tipsy-arrow {
+    top: 0;
+    left: 10px;
+    border-bottom-style: solid;
+    border-top: none;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+.tipsy-ne .tipsy-arrow {
+    top: 0;
+    right: 10px;
+    border-bottom-style: solid;
+    border-top: none;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+.tipsy-s .tipsy-arrow {
+    bottom: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-top-style: solid;
+    border-bottom: none;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+.tipsy-sw .tipsy-arrow {
+    bottom: 0;
+    left: 10px;
+    border-top-style: solid;
+    border-bottom: none;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+.tipsy-se .tipsy-arrow {
+    bottom: 0;
+    right: 10px;
+    border-top-style: solid;
+    border-bottom: none;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+.tipsy-e .tipsy-arrow {
+    right: 0;
+    top: 50%;
+    margin-top: -5px;
+    border-left-style: solid;
+    border-right: none;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.tipsy-w .tipsy-arrow {
+    left: 0;
+    top: 50%;
+    margin-top: -5px;
+    border-right-style: solid;
+    border-left: none;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.ie .tipsy-inner {
+    background: url("/insight/console/images/themes/primus/console/gradients.png") repeat-x 0px -35px;
+}

@@ -84,8 +84,7 @@
                     }
                 };
                 $('#repository-query-json', $(el)).val(JSON.stringify({
-                    "sdk_version": "0.1",
-                    "sdk_bundle": "creatures"
+                    "title": "Creatures Content"
                 }, null, ' '));
                 $('#source-node', $(el)).val('creatures:coyote');
                 var examplesElem = $('.traverse-examples', $(el));

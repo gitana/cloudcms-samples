@@ -193,4 +193,92 @@ span.stars span {
     font-weight: bold;
 }
 
+/* force directed */
+path.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+marker#lotr_relationship {
+  fill: green;
+}
+
+path.link.lotr_relationship {
+  stroke: green;
+}
+
+marker#lotr_seeking {
+  fill: red;
+}
+
+path.link.lotr_seeking {
+  stroke: red;
+}
+
+
+path.link.resolved {
+  stroke-dasharray: 0,2 1;
+}
+
+circle {
+  fill: #ccc;
+  stroke: #333;
+  stroke-width: 1.5px;
+}
+
+circle.female {
+  fill: #F778A1;
+}
+
+circle.ring {
+  fill: #FBB917;
+}
+
+text {
+  font: 10px sans-serif;
+  pointer-events: none;
+}
+
+text.shadow {
+  stroke: #fff;
+  stroke-width: 3px;
+  stroke-opacity: .8;
+}
+
+/* tooltip */
+.tooltip-header {
+    text-align: left;
+    font-weight: bold;
+    padding: 4px 0px;
+    font-size: 1.2em;
+}
+
+.tooltip-body {
+    text-align: left;
+    padding: 2px 0px;
+}
+
+.tooltip-body .tooltip-timestamp {
+    clear: both;
+    margin: 5px 0;
+}
+
+.tooltip-thumbnail {
+    float: left;
+    margin: 0 4px 4px 0;
+}
+
+.tooltip-description {
+    /*overflow: auto;*/
+    margin: 10px 0;
+    word-wrap: break-word;
+}
+
+.tipsy a {
+    color: #FFFFFF;
+}
+
+
+
 

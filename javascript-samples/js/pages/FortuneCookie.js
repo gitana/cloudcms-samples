@@ -75,19 +75,18 @@
                 };
 
                 Samples.defaultClient().queryRepositories({
-                    "sdk_version": "0.1",
-                    "sdk_bundle": "fortunecookie"
+                    "title": "Fortune Cookie Content"
                 }).keepOne().then(function() {
                     this.readBranch('master').readNode('fortunecookie:messages').then(function() {
                         var messages = this.get('messages');
-                        this.attachment('cookie').then(function() {
+                        this.attachment('default').then(function() {
                             $('#fortune-cookie').css({
                                 "background": "url('" + this.getDownloadUri() + "') no-repeat"
                             });
                         });
                         var branch = this.getBranch();
                         this.subchain(branch).trap(function(error) {
-                            if (error.http.status == 404) {
+                            if (error.status == 404) {
                                 createFortuneCookieMessage(branch, messages);
                             } else {
                                 return false;

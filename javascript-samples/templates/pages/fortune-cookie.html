@@ -22,79 +22,86 @@
     </div>
     <div class="row-fluid">
         <pre class="prettyprint linenums">
-var randomInteger = function (M, N) { \n
-    return Math.floor(M + (1 + N - M) * Math.random()); \n
-}; \n
+var randomInteger = function (M, N) {\n
+    return Math.floor(M + (1 + N - M) * Math.random());\n
+};\n
 \n
-var generateLuckyNumbers = function () { \n
-    var luckNumbers = []; \n
-    for (var i = 0; i < 6; i++) {  \n
-        luckNumbers.push(randomInteger(1, 100));  \n
-    }  \n
-    return luckNumbers; \n
-}; \n
-
-var updateFortuneCookieMessage = function(node, messages) { \n
-    node.object['message'] = messages[randomInteger(0, messages.length - 1)]; \n
-    node.object['luckNumbers'] = generateLuckyNumbers(); \n
-    node.update().reload().then(function() { \n
-        displayFortuneCookieMessage(this, messages); \n
-    }); \n
-}; \n
- \n
-var createFortuneCookieMessage = function(branch, messages) { \n
-    branch.createNode({ \n
-        "_qname" : "fortunecookie:cookie", \n
-        "title" : "My Fortune Cookie", \n
-        "message" : messages[randomInteger(0, messages.length - 1)], \n
-        "luckNumbers" : generateLuckyNumbers() \n
-    }).then(function() {  \n
-displayFortuneCookieMessage(this, messages);  \n
-        });  \n
-};  \n
- \n
-var displayFortuneCookieMessage = function(node, messages) {  \n
-    $('#fortune-cookie').empty().append('&lt;div id="fortune-cookie-message"&gt;&lt;div&gt;' + node.get('message') + '&lt;/div&gt;&lt;div&gt;Lucky Numbers: ' \n
-        + node.get('luckNumbers').join(',') + '&lt;/div&gt;'  \n
-        + '&lt;/div&gt;');  \n
-    $('#fortune-cookie').append('&lt;p id="fortune-cookie-timestamp"&gt;' + node.getSystemMetadata().getModifiedBy() + ' @ ' + node.getSystemMetadata().getModifiedOn()["timestamp"] \n
-        + '&lt;/p&gt;&lt;div class="btn-toolbar" id="fortune-cookie-toolbar"&gt;&lt;button id="update_button" class="btn"&gt;Update&lt;/button&gt;&lt;button id="delete_button" class="btn"&gt;Delete&lt;/button&gt;&lt;/div&gt;'); \n
-    $('#delete_button').click(function() {  \n
-        var branch = node.getBranch();  \n
-        node.del().then(function() {  \n
-$('#fortune-cookie').empty().append('&lt;div id="toolbar"&gt;&lt;button id="new_button" class="btn"&gt;Generate New&lt;/button&gt;&lt;/div&gt;'); \n
-$('#new_button').click(function() {  \n
-    createFortuneCookieMessage(branch, messages);  \n
-});  \n
-        }); \n
-    }); \n
-    $('#update_button').click(function() { \n
-        updateFortuneCookieMessage(node, messages); \n
-    }); \n
-}; \n
- \n
-Samples.defaultClient().queryRepositories({  \n
-    "sdk_version": "0.1", \n
-    "sdk_bundle": "fortunecookie"  \n
-}).keepOne().then(function() { \n
-        this.readBranch('master').readNode('fortunecookie:messages').then(function() { \n
-var messages = this.get('messages'); \n
-this.attachment('cookie').then(function() {  \n
-    $('#fortune-cookie').css({ \n
-        "background": "url('" + this.getDownloadUri() + "') no-repeat" \n
-    }); \n
-});  \n
-var branch = this.getBranch(); \n
-branch.trap( \n
-    function(error) { \n
-        //if (error.http.status == 404) { \n
-        createFortuneCookieMessage(branch, messages); \n
-        //}  \n
-    }).readNode("fortunecookie:cookie").then(function() {  \n
-        updateFortuneCookieMessage(this, messages); \n
-    }); \n
-        }); \n
-    }); \n
+var generateLuckyNumbers = function () {\n
+    var luckNumbers = [];\n
+    for (var i = 0; i &lt; 6; i++) {\n
+        luckNumbers.push(randomInteger(1, 100));\n
+    }\n
+    return luckNumbers;\n
+};\n
+\n
+var updateFortuneCookieMessage = function(node, messages) {\n
+    node.object['message'] = messages[randomInteger(0, messages.length - 1)];\n
+    node.object['luckNumbers'] = generateLuckyNumbers();\n
+    node.update().reload().then(function() {\n
+        displayFortuneCookieMessage(this, messages);\n
+    });\n
+};\n
+\n
+var createFortuneCookieMessage = function(branch, messages) {\n
+    branch.createNode({\n
+        "_qname" : "fortunecookie:cookie",\n
+        "title" : "My Fortune Cookie",\n
+        "message" : messages[randomInteger(0, messages.length - 1)],\n
+        "luckNumbers" : generateLuckyNumbers()\n
+    }).then(function() {\n
+        displayFortuneCookieMessage(this, messages);\n
+    });\n
+};\n
+\n
+var displayFortuneCookieMessage = function(node, messages) {\n
+    $('#fortune-cookie').empty().append('&lt;div id="fortune-cookie-message"&gt;'\n
+        + '&lt;div&gt;' + node.get('message') + '&lt;/div&gt; '\n
+        + '&lt;div&gt;Lucky Numbers: ' + node.get('luckNumbers').join(',') + '&lt;/div&gt;'\n
+        + '&lt;/div&gt;');\n
+    $('#fortune-cookie').append('&lt;p id="fortune-cookie-timestamp"&gt;'\n
+        + node.getSystemMetadata().getModifiedBy() + ' @ ' + node.getSystemMetadata().getModifiedOn()["timestamp"]\n
+        + '&lt;/p&gt;'\n
+        + '&lt;div class="btn-toolbar" id="fortune-cookie-toolbar"&gt;'\n
+        + '&lt;button id="update_button" class="btn"&gt;Update&lt;/button&gt;&lt;button id="delete_button" class="btn"&gt;Delete&lt;/button&gt;'\n
+        + '&lt;/div&gt;');\n
+    $('#delete_button').click(function() {\n
+        var branch = node.getBranch();\n
+        Chain(node).del().then(function() {\n
+            $('#fortune-cookie').empty().append('&lt;div class="btn-toolbar" id="fortune-cookie-toolbar"&gt;'\n
+                + '&lt;button id="new_button" class="btn"&gt;Generate New&lt;/button&gt;'\n
+                + '&lt;/div&gt;');\n
+            $('#new_button').click(function() {\n
+                createFortuneCookieMessage(Chain(branch), messages);v
+            });\n
+        });\n
+    });\n
+    $('#update_button').click(function() {\n
+        updateFortuneCookieMessage(Chain(node), messages);\n
+    });\n
+};\n
+\n
+Samples.defaultClient().queryRepositories({\n
+    "title": "Fortune Cookie Content"\n
+}).keepOne().then(function() {\n
+    this.readBranch('master').readNode('fortunecookie:messages').then(function() {\n
+        var messages = this.get('messages');\n
+        this.attachment('default').then(function() {\n
+            $('#fortune-cookie').css({\n
+                "background": "url('" + this.getDownloadUri() + "') no-repeat"\n
+            });\n
+        });\n
+        var branch = this.getBranch();\n
+        this.subchain(branch).trap(function(error) {\n
+            if (error.status == 404) {\n
+                createFortuneCookieMessage(branch, messages);\n
+            } else {\n
+                return false;\n
+            }\n
+        }).readNode("fortunecookie:cookie").then(function() {\n
+            updateFortuneCookieMessage(this, messages);\n
+        });\n
+    });\n
+});\n
         </pre>
     </div>
 </script>
