@@ -1730,6 +1730,8 @@
                         "}).authenticate({\n" +
                         "   'username': 'demo',\n" +
                         "   'password': 'demo'\n" +
+                        "},function(error) {\n" +
+                        "   $('#authentication01-error').addClass('alert alert-error').empty().html(error.message);\n" +
                         "}).then(function() {\n" +
                         "   var authInfo = this.getDriver().getAuthInfo();\n" +
                         "   $('#authentication01-result').html('Successfully authenticated as ' + authInfo.getPrincipalName() + '.');\n" +
@@ -1744,6 +1746,8 @@
                         "}).authenticate({\n" +
                         "   'username': Samples.sampleAuthenticationGrant.getKey(),\n" +
                         "   'password': Samples.sampleAuthenticationGrant.getSecret()\n" +
+                        "},function(error) {\n" +
+                        "   $('#authentication02-error').addClass('alert alert-error').empty().html(error.message);\n" +
                         "}).then(function() {\n" +
                         "   var authInfo = this.getDriver().getAuthInfo();\n" +
                         "   $('#authentication02-result').html('Successfully authenticated as ' + authInfo.getPrincipalName() + '.');\n" +
@@ -1760,6 +1764,8 @@
                         "}).authenticate({\n" +
                         "   'username': 'demo',\n" +
                         "   'password': 'demo'\n" +
+                        "},function(error) {\n" +
+                        "   $('#authentication03-error').addClass('alert alert-error').empty().html(error.message);\n" +
                         "}).then(function() {\n" +
                         "   var authInfo = this.getDriver().getAuthInfo();\n" +
                         "   $('#authentication03-result').html('Successfully authenticated as ' + authInfo.getPrincipalName() + '.');\n" +
@@ -1777,6 +1783,8 @@
                         "   'clientId': Samples.sampleOpenDriverClient.get('key'),\n" +
                         "}).authenticate({\n" +
                         "   'username': Samples.sampleOpenDriverAuthenticationGrant.get('key'),\n" +
+                        "},function(error) {\n" +
+                        "   $('#authentication04-error').addClass('alert alert-error').empty().html(error.message);\n" +
                         "}).then(function() {\n" +
                         "   var authInfo = this.getDriver().getAuthInfo();\n" +
                         "   $('#authentication04-result').html('Successfully authenticated as ' + authInfo.getPrincipalName() + '.');\n" +

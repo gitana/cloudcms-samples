@@ -87,9 +87,11 @@
                         });
                         var branch = this.getBranch();
                         this.subchain(branch).trap(function(error) {
-                            //if (error.http.status == 404) {
-                            createFortuneCookieMessage(branch, messages);
-                            //}
+                            if (error.http.status == 404) {
+                                createFortuneCookieMessage(branch, messages);
+                            } else {
+                                return false;
+                            }
                         }).readNode("fortunecookie:cookie").then(function() {
                             updateFortuneCookieMessage(this, messages);
                         });
