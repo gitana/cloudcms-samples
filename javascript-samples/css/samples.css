@@ -200,6 +200,11 @@ path.link {
   stroke-width: 1.5px;
 }
 
+/* force directed */
+path.link.active {
+  stroke-width: 3px;
+}
+
 marker#lotr_relationship {
   fill: green;
 }
@@ -216,6 +221,13 @@ path.link.lotr_seeking {
   stroke: red;
 }
 
+marker#lotr_relatedto {
+  fill: blue;
+}
+
+path.link.lotr_relatedto {
+  stroke: blue;
+}
 
 path.link.resolved {
   stroke-dasharray: 0,2 1;
@@ -233,6 +245,10 @@ circle.female {
 
 circle.ring {
   fill: #FBB917;
+}
+
+circle.node {
+  fill: #808000;
 }
 
 text {

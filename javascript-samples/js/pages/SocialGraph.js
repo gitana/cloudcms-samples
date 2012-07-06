@@ -45,9 +45,17 @@
                                 var userObj = {
                                     "name" : principalName,
                                     "fullName": name,
-                                    "email": this.getEmail(),
-                                    "avatar" : this.attachment('avatar').getDownloadUri()
+                                    "email": this.getEmail()
+                                    //"avatar" : this.attachment('avatar').getDownloadUri()
                                 }
+
+                                    this.listAttachments(true).then(function() {
+                                        if (this.map["avatar"]) {
+                                            this.select("avatar").then(function() {
+                                                userObj["avatar"] = this.getDownloadUri();
+                                            });
+                                        }
+                                    });
 
                                 nodes[principalName] = userObj;
                                 userNames.push(principalName);
@@ -80,7 +88,7 @@
                                 // find out person relations
                                 this.queryNodes({
                                     "_type" : {
-                                        "$in" : ["lotr:relationship", "lotr:seeking"]
+                                        "$in" : ["lotr:relationship", "lotr:seeking" , "lotr:relatedto", "lotr:comesfrom"]
                                     }
                                 }).each(function() {
 
@@ -104,7 +112,8 @@
                                         "source" : sourceNodeId,
                                         "target" : targetNodeId,
                                         "type" : this.getTypeQName().replace(":","_"),
-                                        "directionality" : this.getDirectionality()
+                                        "directionality" : this.getDirectionality(),
+                                        "id" : this.getId()
                                     };
                                     links.push(link);
                                 }).then(function() {
@@ -118,7 +127,16 @@
                                            if (nodeObj['title']) {
                                                nodeObj['name'] = nodeObj['title'];
                                            }
-                                           nodeObj["avatar"] = this.attachment('avatar').getDownloadUri();
+
+                                           this.listAttachments(true).then(function() {
+                                                if (this.map["avatar"]) {
+                                                    this.select("avatar").then(function() {
+                                                        nodeObj["avatar"] = this.getDownloadUri();
+                                                    });
+                                                }
+                                           });
+
+                                           //nodeObj["avatar"] = this.attachment('avatar').getDownloadUri();
                                            nodes[this.getId()] = this.object;
                                         });
                                     }
@@ -161,7 +179,6 @@
 
                 this.page(page);
             }
-
         });
 
     Ratchet.GadgetRegistry.register("page", Samples.Pages.SocialGraph);

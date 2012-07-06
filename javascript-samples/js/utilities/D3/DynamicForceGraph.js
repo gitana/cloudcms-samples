@@ -18,7 +18,7 @@
             .nodes(d3.values(nodes))
             .links(links)
             .size([w, h])
-            .linkDistance(60)
+            .linkDistance(120)
             .charge(-300)
             .on("tick", tick)
             .start();
@@ -30,7 +30,7 @@
 
 // Per-type markers, as they don't inherit styles.
         svg.append("svg:defs").selectAll("marker")
-            .data(["lotr_seeking"])
+            .data(["lotr_seeking", "lotr_comesfrom"])
             .enter().append("svg:marker")
             .attr("id", String)
             .attr("viewBox", "0 -5 10 10")
@@ -42,6 +42,30 @@
             .append("path")
             .attr("d", "M0,-5L10,0L0,5");
 
+        // Highlight the link and connected nodes on mouseover.
+        function linkMouseover(d) {
+            svg.selectAll("g path").classed("active", function(p) {
+                return p.id == d.id;
+            });
+            svg.selectAll("g image").classed("active", function(p) {
+                return p === d.source || p === d.target;
+            });
+        }
+
+        // Highlight the node and connected links on mouseover.
+        function nodeMouseover(d) {
+            svg.selectAll("g path").classed("active", function(p) {
+                return p.source === d || p.target === d;
+            });
+            d3.select(this).classed("active", true);
+        }
+
+        // Clear any highlighted nodes or links.
+        function mouseout() {
+            svg.selectAll(".active").classed("active", false);
+        }
+
+
         var path = svg.append("svg:g").selectAll("path")
             .data(force.links())
             .enter().append("svg:path")
@@ -50,13 +74,30 @@
             })
             .attr("marker-end", function(d) {
                 return "url(#" + d.type + ")";
-            });
+            })
+            .on("mouseover", linkMouseover)
+            .on("mouseout", mouseout);
 
-        var circle = svg.append("svg:g").selectAll("circle")
+        var node = svg.append("svg:g").selectAll("g")
             .data(force.nodes())
-            .enter().append("svg:circle")
-            .attr("r", 6)
-            .call(force.drag);
+            .enter().append("g")
+            .call(force.drag)
+            .on("mouseover", nodeMouseover)
+            .on("mouseout", mouseout);
+
+        node.append("image")
+            .attr("xlink:href",
+            function(d) {
+                if (d.avatar) {
+                    return d.avatar;
+                } else {
+                    return "/img/favicon.ico";
+                }
+            }).attr("x", -12)
+            .attr("y", -12)
+            .attr("width", 24)
+            .attr("height", 24);
+
 
         var text = svg.append("svg:g").selectAll("g")
             .data(force.nodes())
@@ -64,7 +105,7 @@
 
 // A copy of the text with a thick white stroke for legibility.
         text.append("svg:text")
-            .attr("x", 8)
+            .attr("x", 12)
             .attr("y", ".31em")
             .attr("class", "shadow")
             .text(function(d) {
@@ -72,13 +113,13 @@
             });
 
         text.append("svg:text")
-            .attr("x", 8)
+            .attr("x", 12)
             .attr("y", ".31em")
             .text(function(d) {
                 return d.name;
             });
 
-        var getTooltip = function(d) {
+        var getNodeTooltip = function(d) {
 
             var title = d['fullName'] ? d['fullName'] : d['name'];
             var gender = d['gender'] ? d['gender'] : "";
@@ -101,14 +142,54 @@
             return tooltipDetails;
         };
 
-        $('g circle').tipsy({
+        var getPathTooltip = function(d) {
+
+            if (d.type == "lotr_comesfrom") {
+                var tooltipDetails = "<div class='tooltip-header'>Comes From</div>";
+                tooltipDetails += "<div class='tooltip-body'>";
+                tooltipDetails += d.source.fullName + " comes from " + d.target.name;
+                tooltipDetails += "</div>";
+                return tooltipDetails;
+            } else if (d.type == "lotr_seeking") {
+                var tooltipDetails = "<div class='tooltip-header'>Seeking</div>";
+                tooltipDetails += "<div class='tooltip-body'>";
+                tooltipDetails += d.source.fullName + " is seeking " + d.target.name;
+                tooltipDetails += "</div>";
+                return tooltipDetails;
+            } else if (d.type == "lotr_relatedto") {
+                var tooltipDetails = "<div class='tooltip-header'>Related to</div>";
+                tooltipDetails += "<div class='tooltip-body'>";
+                tooltipDetails += d.source.fullName + " is related to " + d.target.fullName;
+                tooltipDetails += "</div>";
+                return tooltipDetails;
+            } else if (d.type == "lotr_relationship") {
+                var tooltipDetails = "<div class='tooltip-header'>Relationship</div>";
+                tooltipDetails += "<div class='tooltip-body'>";
+                tooltipDetails += d.source.fullName + " has relationship with " + d.target.fullName;
+                tooltipDetails += "</div>";
+                return tooltipDetails;
+            }
+        };
+
+        $('g image').tipsy({
             live : true,
             gravity : 'n',
             html: true,
             trigger : 'hover',
             title: function() {
                 var d = this.__data__;
-                return getTooltip(d);
+                return getNodeTooltip(d);
+            }
+        });
+
+        $('g path').tipsy({
+            live : true,
+            gravity : 'n',
+            html: true,
+            trigger : 'hover',
+            title: function() {
+                var d = this.__data__;
+                return getPathTooltip(d);
             }
         });
 
@@ -119,18 +200,8 @@
                 return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
             });
 
-            circle.attr("r",function(d) {
-                if (d.name == "The One Ring") {
-                    return 10;
-                } else {
-                    return 6;
-                }
-            }).attr("class",function(d) {
-                if (d.gender && d.gender == 'female') {
-                    return "female";
-                } else if (d.name == "The One Ring") {
-                    return "ring";
-                }
+            node.attr("class",function(d) {
+
             }).attr("transform", function(d) {
                 return "translate(" + d.x + "," + d.y + ")";
             });

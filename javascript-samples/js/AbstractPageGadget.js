@@ -32,9 +32,6 @@
 
             this.setupSidebar(el);
 
-            // set up the dashlets
-            this.setupDashlets(el);
-
             // set up the page
             this.setupPage(el);
 
@@ -44,6 +41,9 @@
 
             // render
             self.renderTemplate(el, self.TEMPLATE, function(el) {
+                // set up the dashlets
+                self.setupDashlets(el);
+
                 el.swap();
             });
         }
