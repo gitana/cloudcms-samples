@@ -91,7 +91,7 @@
                 if (d.avatar) {
                     return d.avatar;
                 } else {
-                    return "/img/favicon.ico";
+                    return "img/favicon.ico";
                 }
             }).attr("x", -12)
             .attr("y", -12)
