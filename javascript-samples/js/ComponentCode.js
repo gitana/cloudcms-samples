@@ -250,7 +250,7 @@
         },
         "repository" : {
             "title" : "Repository",
-            "description" : "Cloud CMS repository is a workspace where you can place your content. Each repository is isolated from any of the other repositories in the CloundCMS so you can feel free to create a repository and then do anything you'd like with it.",
+            "description" : "Cloud CMS repository is a workspace where you can place your content. Each repository is isolated from any of the other repositories in the Cloud CMS so you can feel free to create a repository and then do anything you'd like with it.",
             "samples" : {
                 "repository01" : {
                     "title" : "Create a new repository",
@@ -634,7 +634,7 @@
         },
         "node-association" : {
             "title" : "Association",
-            "description" : "CloundCMS nodes can be connected with each other through associations. We can create as many associations as we want between two nodes. Each association involves a source node and a target node. Association can have its own properties since association is node as well. There are two basic types of associations, directed and undirected. For more association examples, please visit <a href='#/min-apps/food-web'>Food Web</a> min app.",
+            "description" : "Cloud CMS nodes can be connected with each other through associations. We can create as many associations as we want between two nodes. Each association involves a source node and a target node. Association can have its own properties since association is node as well. There are two basic types of associations, directed and undirected. For more association examples, please visit <a href='#/min-apps/food-web'>Food Web</a> min app.",
             "samples" : {
                 "node-association01" : {
                     "title" : "Create a new directed association",
@@ -1755,7 +1755,7 @@
                 },
                 "authentication03" : {
                     "title" : "Authenticate with open driver client",
-                    "description" : "This sample shows you how to use the \"open-driver\" authentication flow which is a custom Gitana OAuth2 flow for clients that cannot " +
+                    "description" : "This sample shows you how to use the \"open-driver\" authentication flow which is a custom Cloud CMS OAuth2 flow for clients that cannot " +
                         "store the client secret.  This flow provides the 2-legged functionality of the username/password flow by " +
                         "looking at the originating URL of the request and matching it against domains registered for the client. " +
                         "This pattern is useful for applications running in the browser (Javascript) which cannot hold a client secret. Please note that this example will only work if it is run under the trusted domain code.cloudcms.com",
@@ -1773,7 +1773,7 @@
                 },
                 "authentication04" : {
                     "title" : "Authenticate with open driver client and its authentication grant",
-                    "description" : "Like the above sample, this sample uses the \"open-driver\" authentication flow which is a custom Gitana OAuth2 flow for clients that cannot " +
+                    "description" : "Like the above sample, this sample uses the \"open-driver\" authentication flow which is a custom Cloud CMS OAuth2 flow for clients that cannot " +
                         "store the client secret. Here we also assume that the user password cannot be trusted.  We pre-generated " +
                         "an authentication grant within Cloud CMS for the open driver client and supply the key here.  Authentication grants are wired to a single " +
                         "client and user.  They cannot be shared across clients. " +

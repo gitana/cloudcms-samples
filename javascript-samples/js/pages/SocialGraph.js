@@ -29,7 +29,7 @@
                             var personNodesLookup = {};
 
                             this.queryDomains({
-                                "title": "LOTR"
+                                "title": "LOTR Domain"
                             }).keepOne().listUsers().each(function(){
                                 var principalName = this.getName();
 

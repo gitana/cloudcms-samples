@@ -2,7 +2,7 @@
     <div class="">
         <h2>Fortune Cookie</h2>
 
-        <p>A node is a branch scope object that holds the data that you want to store in Gitana Cloud CMS. Each node
+        <p>A node is a branch scope object that holds the data that you want to store in Cloud CMS. Each node
             contains a JSON document for properties and can have one or multiple attachments for binary data.
         </p>
 
@@ -71,7 +71,7 @@ var displayFortuneCookieMessage = function(node, messages) {\n
                 + '&lt;button id="new_button" class="btn"&gt;Generate New&lt;/button&gt;'\n
                 + '&lt;/div&gt;');\n
             $('#new_button').click(function() {\n
-                createFortuneCookieMessage(Chain(branch), messages);v
+                createFortuneCookieMessage(Chain(branch), messages);\n
             });\n
         });\n
     });\n

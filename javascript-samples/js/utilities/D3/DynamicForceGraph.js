@@ -30,7 +30,7 @@
 
 // Per-type markers, as they don't inherit styles.
         svg.append("svg:defs").selectAll("marker")
-            .data(["lotr_seeking", "lotr_comesfrom"])
+            .data([/*"lotr_seeking", "lotr_comesfrom"*/])
             .enter().append("svg:marker")
             .attr("id", String)
             .attr("viewBox", "0 -5 10 10")
