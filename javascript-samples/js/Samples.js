@@ -21,9 +21,12 @@
     }
 
     Samples.defaultClient = function() {
+        var language = window.navigator.userLanguage || window.navigator.language;
+        var userLocale = language.replace('-','_');
         var gitana = new Gitana({
             "clientId": "676e3450-6131-46c2-99cc-496aa2ad80fa",
-            "clientSecret": "5fGkvesH/tWEMX6SpevL54rY6iJK5ADzLH963sif2ljrWvFOhV2zXv6rSpLF2uMWlJ9SG0uEO9uQO4JZac0i7DZquA/5W8ixJwhj76g0Ksk="
+            "clientSecret": "5fGkvesH/tWEMX6SpevL54rY6iJK5ADzLH963sif2ljrWvFOhV2zXv6rSpLF2uMWlJ9SG0uEO9uQO4JZac0i7DZquA/5W8ixJwhj76g0Ksk=",
+            "locale" : userLocale
         });
 
         return gitana.authenticate({

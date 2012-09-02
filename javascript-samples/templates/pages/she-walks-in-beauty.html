@@ -1,0 +1,47 @@
+<script id="layoutTemplate" type="text/x-jquery-tmpl">
+    <div class="">
+        <h2>She Walks in Beauty</h2>
+
+        <p>
+            Cloud CMS provides full support for internationalization and localization. It provides out of the box
+            content models for storing and managing your multilingual content and its translations.
+            Cloud CMS Console has dedicated authoring tool for listing, creating and editing content translations.
+            Cloud CMS Drivers also provide easy-to-use REST API that helps you build localized
+            application by serving localized content based on your user's locale.
+        </p>
+
+        <p>
+            This example retrieves and displays localized version of the node "i18n:shewalksinbeauty", a multi-lingual
+            content node which contains picture of Lord Byron and his famous poet, She Walks in Beauty.
+            The node and its translations are placed under the master branch of the "Multi-Lingual Repository"
+            repository.
+        </p>
+
+        <p>
+            You can switch its language by picking a different language from the list of all available translations.
+            If you like, you can also click <a id="she-walks-in-beauty-poem-contribute"
+                                               href="javascript:void(0);">here</a> to contribute new translations.
+        </p>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div id="she-walks-in-beauty">
+                <div class="row-fluid">
+                    <div id="she-walks-in-beauty-poet" class="span4"></div>
+                    <div id="she-walks-in-beauty-poem" class="span8">
+                        <h3 id="she-walks-in-beauty-poem-title"></h3>
+
+                        <p id="she-walks-in-beauty-poem-body"></p>
+
+                        <p>
+                            <select id="she-walks-in-beauty-poem-locales" style="display:none;">
+                                <option value="en_US">English (United States)</option>
+                            </select>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="she-walks-in-beauty-error"></div>
+        </div>
+    </div>
+</script>

@@ -210,6 +210,12 @@
                     "link" : "#/mini-apps/user-reviews",
                     "title" : "User Reviews",
                     "current" : current ? current == "mini-apps-user-reviews" : false
+                },
+                {
+                    "id" : "mini-apps-she-walks-in-beauty",
+                    "link" : "#/mini-apps/she-walks-in-beauty",
+                    "title" : "She Walks in Beauty",
+                    "current" : current ? current == "mini-apps-she-walks-in-beauty" : false
                 }
             ]
         };
