@@ -145,6 +145,8 @@
 
                             this.then(function() {
 
+                                self.hideLoadingIndicator();
+
                                 return Samples.Utils.D3.dynamicForceGraph(null, divId, {
                                     "nodes" : nodes,
                                     "links" : links
@@ -157,6 +159,7 @@
             },
 
             setupDashlets : function(el) {
+                this.showLoadingIndicator($(el));
                 this.setupSocialGraph(el);
             },
 

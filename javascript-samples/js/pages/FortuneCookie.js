@@ -15,7 +15,9 @@
                 this.sidebar(Samples.Sidebar(this, "mini-apps-fortune-cookie"));
             },
 
-            setupFortuneCookie : function(el) {
+            setupFortuneCookie : function() {
+                var self = this;
+
                 var randomInteger = function (M, N) {
                     return Math.floor(M + (1 + N - M) * Math.random());
                 };
@@ -78,6 +80,7 @@
                     "title": "Fortune Cookie Content"
                 }).keepOne().then(function() {
                     this.readBranch('master').readNode('fortunecookie:messages').then(function() {
+                        self.hideLoadingIndicator();
                         var messages = this.get('messages');
                         this.attachment('default').then(function() {
                             $('#fortune-cookie').css({
@@ -111,8 +114,9 @@
 
                 // render
                 self.renderTemplate(el, self.TEMPLATE, function(el) {
-                    self.setupFortuneCookie(el);
                     el.swap();
+                    self.showLoadingIndicator($('#fortune-cookie'));
+                    self.setupFortuneCookie();
                 });
             }
 

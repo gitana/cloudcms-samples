@@ -27,6 +27,14 @@
             });
         },
 
+        showLoadingIndicator: function(div) {
+            div.append("<div id='example-loading' class='row'><div class='span12 pagination-centered'><img src='img/ajax-loader.gif'></div></div>");
+        },
+
+        hideLoadingIndicator: function() {
+            $('#example-loading').remove();
+        },
+
         index: function(el) {
             var self = this;
 

@@ -304,6 +304,11 @@ text.shadow {
     margin-bottom: 15px;
 }
 
+/*Loading*/
+#example-loading {
+    padding: 20px 0;
+}
+
 
 
 

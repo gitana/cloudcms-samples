@@ -185,12 +185,12 @@
                                 },
                                 "title":{
                                     "title":"Poem Title",
-                                    "description":"Enter poem title.",
+                                    "description":"Enter poem title in your selected language.",
                                     "type":"string"
                                 },
                                 "description":{
                                     "title":"Poem Body",
-                                    "description":"Enter poem body.",
+                                    "description":"Enter poem body in your selected language.",
                                     "type":"string"
                                 }
                             }
@@ -228,6 +228,7 @@
                 Samples.defaultClient().queryRepositories({
                     "title": "Multi-Lingual Repository"
                 }).keepOne().readBranch('master').readNode('i18n:shewalksinbeauty').then(function() {
+                    _this.hideLoadingIndicator();
                     var node = this;
                     this.attachment('default').then(function() {
                         $('#she-walks-in-beauty-poet').append('<img src="' + this.getDownloadUri() + '">');
@@ -268,6 +269,7 @@
                 // render
                 self.renderTemplate(el, self.TEMPLATE, function(el) {
                     el.swap();
+                    self.showLoadingIndicator($('#she-walks-in-beauty'));
                     self.setupSheWalksinBeauty();
                 });
             }

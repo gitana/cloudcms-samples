@@ -15,7 +15,7 @@
                 this.sidebar(Samples.Sidebar(this, "mini-apps-food-web"));
             },
 
-            setupFoodWeb : function(el) {
+            setupFoodWeb : function() {
                 var nodeLookup = {};
                 Samples.defaultClient().trap(function(error){
 
@@ -94,8 +94,8 @@
 
                 // render
                 self.renderTemplate(el, self.TEMPLATE, function(el) {
-                    self.setupFoodWeb(el);
                     el.swap();
+                    self.setupFoodWeb();
                 });
             }
 
