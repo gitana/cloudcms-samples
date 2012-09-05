@@ -127,6 +127,11 @@
                 this.sidebar(Samples.Sidebar(this, "mini-apps-she-walks-in-beauty"));
             },
 
+            getUserLocale : function() {
+                var language = window.navigator.userLanguage || window.navigator.language;
+                return language.replace('-', '_');
+            },
+
             setupTranslationContributionForm: function(locales, node) {
                 var self = this;
                 $("#she-walks-in-beauty-poem-contribute").click(function() {
@@ -134,11 +139,10 @@
                     var localeKeys = [];
                     var localeLabels = [];
 
-                    var language = window.navigator.userLanguage || window.navigator.language;
-                    var userLocale = language.replace('-', '_');
+                    var userLocale = self.getUserLocale();
 
                     $.each(self.LOCALE_LOOKUP, function(k, v) {
-                        if (k != 'en_US' && $.inArray(k.toLowerCase(), locales) == -1) {
+                        if (k != 'en_US' && $.inArray(k, locales) == -1) {
                             localeKeys.push(k);
                             localeLabels.push(v);
                         }
@@ -236,13 +240,12 @@
                     $('#she-walks-in-beauty-poem-title').html(this.getTitle());
                     $('#she-walks-in-beauty-poem-body').html(this.getDescription().replace(/\n/g,"<br/>"));
                     // prepare locale switcher
+                    var userLocale = _this.getUserLocale();
                     this.locales("edition1", function(locales) {
                         $.each(locales, function(i,v) {
-                            //work around for case issue
-                            var vArray = v.split('_');
-                            v = vArray[0] + '_' + vArray[1].toUpperCase();
                             var label = _this.LOCALE_LOOKUP[v] ? _this.LOCALE_LOOKUP[v] : v;
-                            $('#she-walks-in-beauty-poem-locales').append('<option value="' + v +'">' + label +'</option>');
+                            var selected = v == userLocale ? "selected" : "";
+                            $('#she-walks-in-beauty-poem-locales').append('<option value="' + v +'" ' + selected + '>' + label +'</option>');
                         });
                         $('#she-walks-in-beauty-poem-locales').show();
                         _this.setupTranslationContributionForm(locales,node);
