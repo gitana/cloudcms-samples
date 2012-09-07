@@ -241,10 +241,11 @@
                     $('#she-walks-in-beauty-poem-body').html(this.getDescription().replace(/\n/g,"<br/>"));
                     // prepare locale switcher
                     var userLocale = _this.getUserLocale();
+                    alert(userLocale);
                     this.locales("edition1", function(locales) {
                         $.each(locales, function(i,v) {
                             var label = _this.LOCALE_LOOKUP[v] ? _this.LOCALE_LOOKUP[v] : v;
-                            var selected = v == userLocale ? "selected" : "";
+                            var selected = v.toLowerCase() == userLocale.toLowerCase() ? "selected" : "";
                             $('#she-walks-in-beauty-poem-locales').append('<option value="' + v +'" ' + selected + '>' + label +'</option>');
                         });
                         $('#she-walks-in-beauty-poem-locales').show();
