@@ -241,7 +241,6 @@
                     $('#she-walks-in-beauty-poem-body').html(this.getDescription().replace(/\n/g,"<br/>"));
                     // prepare locale switcher
                     var userLocale = _this.getUserLocale();
-                    alert(userLocale);
                     this.locales("edition1", function(locales) {
                         $.each(locales, function(i,v) {
                             var label = _this.LOCALE_LOOKUP[v] ? _this.LOCALE_LOOKUP[v] : v;
