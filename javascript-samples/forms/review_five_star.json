@@ -1,11 +1,6 @@
 {
     "renderForm":true,
     "form":{
-        "buttons":{
-            "save":true,
-            "submit":false,
-            "reset":false
-        }
     },
     "fields":{
         "rating":{
