@@ -30,7 +30,7 @@
                                     $('<li class="result-item"><div class="item-title" id="' + node.getQName() + '">' + title + '</div><div class="item-description">'
                                         + description + '</div></li>').click(
                                         function() {
-                                            Samples.Utils.sourceViewer(title, node.object);
+                                            Samples.Utils.sourceViewer(title, node);
                                         }).appendTo($('#traverse-results ol'));
                                 });
                         });

@@ -26,20 +26,20 @@
                 var getHelpfulStats = function (commentNode) {
                     var helpfulCounter = 0;
                     var unhelpfulCounter = 0;
-                    if (commentNode.object['stats']) {
-                        if (commentNode.object['stats']['a:deems_helpful']) {
-                            helpfulCounter = commentNode.object['stats']['a:deems_helpful'];
+                    if (commentNode['stats']) {
+                        if (commentNode['stats']['a:deems_helpful']) {
+                            helpfulCounter = commentNode['stats']['a:deems_helpful'];
                         }
-                        if (commentNode.object['stats']['a:deems_unhelpful']) {
-                            unhelpfulCounter = commentNode.object['stats']['a:deems_unhelpful'];
+                        if (commentNode['stats']['a:deems_unhelpful']) {
+                            unhelpfulCounter = commentNode['stats']['a:deems_unhelpful'];
                         }
                     }
                     return helpfulCounter + ' out of ' + (helpfulCounter + unhelpfulCounter) + ' people found this review helpful.'
                 };
 
                 var getSpamStats = function (commentNode) {
-                    if (commentNode.object['stats'] && commentNode.object['stats']['a:deems_spam']) {
-                        return commentNode.object['stats']['a:deems_spam'] + ' people marked this review as inappropriate.';
+                    if (commentNode['stats'] && commentNode['stats']['a:deems_spam']) {
+                        return commentNode['stats']['a:deems_spam'] + ' people marked this review as inappropriate.';
                     } else {
                         return '';
                     }
@@ -86,7 +86,7 @@
                                         "view" : {
                                             "globalTemplate": '/javascript-samples/templates/pages/user-reviews/UserReview.html'
                                         },
-                                        "data": commentNode.object,
+                                        "data": commentNode,
                                         "postRender": function (renderedReviews) {
                                             $('.user-review-timestamp', userReviewDiv).html(commentNode.getSystemMetadata().getModifiedOn().getTimestamp());
                                             $('.user-review-user', userReviewDiv).html(commentNode.getSystemMetadata().getModifiedBy());
@@ -97,7 +97,7 @@
                                                 "view" : {
                                                     "globalTemplate": '/javascript-samples/templates/pages/user-reviews/UserReviewIndicators.html'
                                                 },
-                                                "data": associationNode.object,
+                                                "data": associationNode,
                                                 "postRender" : function(renderedReviewIndicatorsField) {
                                                     $('.helpfulindicator', renderedReviewIndicatorsField.container).html(getHelpfulStats(commentNode));
                                                     $('.spamindicator', renderedReviewIndicatorsField.container).html(getSpamStats(commentNode));
@@ -137,7 +137,7 @@
 
                 var displayReviewMetrics = function () {
                     promotionNode.reload().then(function() {
-                        var stats = this.object['stats'];
+                        var stats = this['stats'];
                         $('#review_metrics').empty().alpaca({
                             "view" : {
                                 "globalTemplate": '/javascript-samples/templates/pages/user-reviews/UserReviewMetrics.html'

@@ -35,8 +35,8 @@ var generateLuckyNumbers = function () {\n
 };\n
 \n
 var updateFortuneCookieMessage = function(node, messages) {\n
-    node.object['message'] = messages[randomInteger(0, messages.length - 1)];\n
-    node.object['luckNumbers'] = generateLuckyNumbers();\n
+    node['message'] = messages[randomInteger(0, messages.length - 1)];\n
+    node['luckNumbers'] = generateLuckyNumbers();\n
     node.update().reload().then(function() {\n
         displayFortuneCookieMessage(this, messages);\n
     });\n

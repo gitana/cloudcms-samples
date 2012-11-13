@@ -16,7 +16,7 @@
     <target name="update-alpaca-lib" description="Update Alpaca Library">
         <mkdir dir="${project.dir}/lib/alpaca"/>
         <copy todir="${project.dir}/lib/alpaca">
-            <fileset dir="${alpaca.basepath}/alpaca">
+            <fileset dir="${alpaca.basepath}">
                 <include name="css/alpaca*.css"/>
                 <include name="css/images/**/*"/>
                 <include name="js/*.js"/>

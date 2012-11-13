@@ -36,7 +36,7 @@
                                     var displayCreature = function(div, node) {
                                         div.append('<li class="span12" style="margin-left:0;">'
                                             + '<div class="thumbnail">'
-                                            + '<img class="creature-photo" src="' + node.attachment("photo").getDownloadUri() + '"/>'
+                                            + '<img class="creature-photo" src="' + node.attachmentDownloadUri("photo") + '"/>'
                                             + '<div class="caption">'
                                             + '<h5 id="' + node.getId() + '" class="item-title">' + node.getTitle() + '</h5>'
                                             + '<p class="item-details">' + node.get('details') + '</p>'

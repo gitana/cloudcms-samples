@@ -31,8 +31,8 @@
                 };
 
                 var updateFortuneCookieMessage = function(node, messages) {
-                    node.object['message'] = messages[randomInteger(0, messages.length - 1)];
-                    node.object['luckNumbers'] = generateLuckyNumbers();
+                    node['message'] = messages[randomInteger(0, messages.length - 1)];
+                    node['luckNumbers'] = generateLuckyNumbers();
                     node.update().reload().then(function() {
                         displayFortuneCookieMessage(this, messages);
                     });

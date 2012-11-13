@@ -10,7 +10,7 @@
                     "title" : "Create an empty chain",
                     "description" : "This sample shows you how to create an empty chain and use then method.",
                     "code" : "Chain().then(function() { \n" +
-                        "   var data = 'Marry ';\n" +
+                        "   var data = 'Mary ';\n" +
                         "   $('#chaining01-result').html(data);\n" +
                         "   this.then(function() {\n" +
                         "       data += 'has a little ';\n" +
@@ -26,7 +26,7 @@
                     "title" : "Create and run serial sub chains",
                     "description" : "This sample creates two sub chains that run them back-to-back.",
                     "code" : "Chain().then(function() { \n" +
-                        "   var data1 = 'Marry ';\n" +
+                        "   var data1 = 'Mary ';\n" +
                         "   var data2 = 'John ';\n" +
                         "   $('#chaining02-result').html(data1 + ' -- ' + data2);\n" +
                         "   this.subchain().then(function() {\n" +
@@ -49,7 +49,7 @@
                     "title" : "Create and run parallel sub chains",
                     "description" : "This sample creates two parallel chains that run concurrently and then print the output when both sub-chains complete.",
                     "code" : "Chain().then(function() { \n" +
-                        "   var data1 = 'Marry ';\n" +
+                        "   var data1 = 'Mary ';\n" +
                         "   var data2 = 'John ';\n" +
                         "   $('#chaining03-result').html(data1 + ' -- ' + data2);\n" +
                         "   var f1 = function() {\n" +
@@ -92,7 +92,7 @@
                         "   };\n" +
                         "   var Bank = function(coins) {\n" +
                         "       var coins = coins;\n" +
-                        "       this.doesSomethingIhaveNoIdea = function(){\n" +
+                        "       this.spendCoin = function(){\n" +
                         "           coins--;\n" +
                         "       };\n" +
                         "       this.balance = function(){\n" +
@@ -103,11 +103,11 @@
                         "       invest: function(){\n" +
                         "            $('#chaining04-result').append('<br/>Bank invested my coins.');\n" +
                         "            return this.subchain().then(function() {\n" +
-                        "                this.doesSomethingIhaveNoIdea();\n" +
+                        "                this.spendCoin();\n" +
                         "           }).then(function() {\n" +
-                        "                this.doesSomethingIhaveNoIdea();\n" +
+                        "                this.spendCoin();\n" +
                         "            }).then(function() {\n" +
-                        "                this.doesSomethingIhaveNoIdea();\n" +
+                        "                this.spendCoin();\n" +
                         "           });\n" +
                         "        }\n" +
                         "   };\n" +
@@ -270,7 +270,7 @@
                     "code" : "Samples.defaultClient().trap(function(error) { \n" +
                         "    Samples.defaultErrorHandler(error,'repository02');\n" +
                         "}).readRepository(Samples.sampleRepository).then(function() {                                 \n" +
-                        "   this.object['title'] = this.getTitle() + ' updated.';                                \n" +
+                        "   this['title'] = this.getTitle() + ' updated.';                                \n" +
                         "   this.update().reload().then(function() {\n" +
                         "       $('#repository02-result').html('Successfully updated repository ' + this.getTitle());  \n" +
                         "   })\n" +
@@ -284,7 +284,7 @@
                         "}).queryRepositories({           \n" +
                         "   'sdk_bundle': 'sdk-sample-repository'      \n" +
                         "}).count(function(count) {                                 \n" +
-                        "   $('#repository03-result').html('Found ' + count+ ' repositories whose sdk_bundle property has value \'sdk-sample-repository\'.');  \n" +
+                        "   $('#repository03-result').html('Found ' + count+ ' repositories whose sdk_bundle property has value: sdk-sample-repository.');  \n" +
                         "});"
                 },
                 "repository04" : {
@@ -346,7 +346,7 @@
                     "code" : "Samples.defaultClient().trap(function(error) { \n" +
                         "    Samples.defaultErrorHandler(error,'branch03');\n" +
                         "}).readRepository(Samples.sampleRepository).readBranch('master').then(function() {\n" +
-                        "   this.object['title'] = 'Master branch updated.';                                \n" +
+                        "   this['title'] = 'Master branch updated.';                                \n" +
                         "   this.update().reload().then(function() {\n" +
                         "       $('#branch03-result').html('Successfully updated branch ' + this.getTitle());  \n" +
                         "   })\n" +
@@ -408,7 +408,7 @@
                         "   'custom2' : {'prop1' : 'va1', 'prop2' : 'val2'},\n" +
                         "   'tags' : ['tag1','tag2']\n" +
                         "}).then(function() {\n" +
-                        "   this.object['custom2']['prop1'] = 'updated val';\n" +
+                        "   this['custom2']['prop1'] = 'updated val';\n" +
                         "   this.update().reload().then(function() {\n" +
                         "       $('#node02-result').html('Successfully updated node ' + this.getTitle());\n" +
                         "   })\n" +
@@ -450,8 +450,7 @@
                     "code" : "Samples.defaultClient().trap(function(error) {\n" +
                         "    Samples.defaultErrorHandler(error,'node-attachment01');\n" +
                         "}).queryRepositories({\n" +
-                        "   'sdk_version': '0.1',\n" +
-                        "   'sdk_bundle': 'creatures'\n" +
+                        "   'title': 'Creatures Content'\n" +
                         "}).keepOne().readBranch('master').readNode('creatures:nuthatch').listAttachments().then(function() {\n" +
                         "   $('#node-attachment01-result').empty();\n" +
                         "   this.each(function() {\n" +
@@ -573,8 +572,7 @@
                     "code" : "Samples.defaultClient().trap(function(error) {\n" +
                         "    Samples.defaultErrorHandler(error,'node-audit01');\n" +
                         "}).queryRepositories({\n" +
-                        "   'sdk_version': '0.1',\n" +
-                        "   'sdk_bundle': 'creatures'\n" +
+                        "   'title': 'Creatures Content',\n" +
                         "}).keepOne().readBranch('master').readNode('creatures:nuthatch').listAuditRecords({\n" +
                         "   'skip' : 0,\n" +
                         "   'limit' : 5,\n" +
@@ -598,8 +596,7 @@
                     "code" : "Samples.defaultClient().trap(function(error) {\n" +
                         "    Samples.defaultErrorHandler(error,'node-traverse01');\n" +
                         "}).queryRepositories({\n" +
-                        "   'sdk_version': '0.1',\n" +
-                        "   'sdk_bundle': 'creatures'\n" +
+                        "   'title': 'Creatures Content',\n" +
                         "}).keepOne().readBranch('master').readNode('creatures:nuthatch').traverse({\n" +
                         "    'depth': 1\n" +
                         "}).nodes().then(function() {\n" +
@@ -621,9 +618,8 @@
                     "code" : "Samples.defaultClient().trap(function(error) {\n" +
                         "    Samples.defaultErrorHandler(error,'node-stat01');\n" +
                         "}).queryRepositories({\n" +
-                        "   'sdk_version': '0.1',\n" +
-                        "   'sdk_bundle': 'alpaca-examples'\n" +
-                        "}).keepOne().readBranch('master').readNode('alpacaexamples:binderpromotion').then(function() {\n" +
+                        "   'title': 'Store Content',\n" +
+                        "}).keepOne().readBranch('master').readNode('store:promotion').then(function() {\n" +
                         "   $('#node-stat01-result').empty().html('<div>List of stats</div>');\n" +
                         "   $.each(this.stats(), function(key,val) {\n" +
                         "       $('#node-stat01-result').append('<li>' + key + ' :: ' + val + '</li>');\n" +
@@ -731,7 +727,7 @@
                         "           $('#node-association04-result').html('Successfully created a new directed association.');\n" +
                         "       });\n" +
                         "       this.subchain(srcNode).outgoingAssociations('a:child').keepOne().then(function() {\n" +
-                        "           this.object['testPro1'] = 'test val1 updated';\n" +
+                        "           this['testPro1'] = 'test val1 updated';\n" +
                         "           this.update().then(function() {\n" +
                         "               $('#node-association04-result').append('<br/>Successfully updated an existing association.');\n" +
                         "           });\n" +
@@ -851,7 +847,7 @@
                         "       var typeQName = this.getQName();\n" +
                         "       $('#node-type02-result').html('Successfully created a new type with qname ' + typeQName + '.');\n" +
                         "       this.subchain(this.getBranch()).readNode(typeQName).then(function(){\n" +
-                        "           this.object['properties']['customProp2'] = {\n" +
+                        "           this['properties']['customProp2'] = {\n" +
                         "               'type' : 'integer'\n" +
                         "           };\n" +
                         "           this.update().reload().then(function() {\n" +
@@ -899,7 +895,7 @@
                         "       var typeQName = this.getQName();\n" +
                         "       this.subchain(this.getBranch()).readNode(typeQName)\n" +
                         "       .then(function(){\n" +
-                        "           this.object['mandatoryFeatures'] = {\n" +
+                        "           this['mandatoryFeatures'] = {\n" +
                         "               'f:thumbnailable' : {\n" +
                         "                   'thumb50' : {\n" +
                         "                       '_key' : 'thumb50',\n" +
@@ -1012,7 +1008,7 @@
                         "       }\n" +
                         "   };\n" +
                         "   this.createNode(newTypeObj).then(function() {\n" +
-                        "       var typeQName = this.getQName();" +
+                        "       var typeQName = this.getQName();\n" +
                         "       this.subchain(this.getBranch()).readDefinition(typeQName).createForm('form1', {\n" +
                         "          'fields' : {\n" +
                         "              'customProp' : {\n" +
@@ -1078,14 +1074,14 @@
                         "       this.then(function() {\n" +
                         "           $('#node-form02-result').html('<div id=\"form1\"></div><div id=\"form2\"></div>');\n" +
                         "           $('#form1').alpaca({\n" +
-                        "               'data' : testNode.object,\n" +
-                        "               'schema' : this.object,\n" +
-                        "               'options' : form1.object\n" +
+                        "               'data' : testNode,\n" +
+                        "               'schema' : this,\n" +
+                        "               'options' : form1\n" +
                         "           });\n" +
                         "           $('#form2').alpaca({\n" +
-                        "               'data' : testNode.object,\n" +
-                        "               'schema' : this.object,\n" +
-                        "               'options' : form2.object\n" +
+                        "               'data' : testNode,\n" +
+                        "               'schema' : this,\n" +
+                        "               'options' : form2\n" +
                         "           });\n" +
                         "       });\n" +
                         "   });\n" +
@@ -1115,7 +1111,7 @@
                     "code" : "Samples.defaultClient().trap(function(error) { \n" +
                         "    Samples.defaultErrorHandler(error,'domain02');\n" +
                         "}).createDomain().then(function() {\n" +
-                        "   this.object['title'] = 'Updated domain';\n" +
+                        "   this['title'] = 'Updated domain';\n" +
                         "   this.update().then(function() {\n" +
                         "       $('#domain02-result').html('Successfully updated domain ' + this.getId());  \n" +
                         "   });\n" +
@@ -1169,7 +1165,7 @@
                         "       'tags' : ['test']      \n" +
                         "   });\n" +
                         "   this.readPrincipal(groupName).then(function() {\n" +
-                        "       this.object['customPro'] = 'Custom Value';\n" +
+                        "       this['customPro'] = 'Custom Value';\n" +
                         "       this.update().reload().then(function() {\n" +
                         "           $('#domain-group02-result').html('Successfully created and updated group ' + this.getName());  \n" +
                         "       });\n" +
@@ -1297,7 +1293,7 @@
                         "       'tags' : ['test']      \n" +
                         "   });\n" +
                         "   this.readPrincipal(userName).then(function() {\n" +
-                        "       this.object['email'] = 'Test@test.com';\n" +
+                        "       this['email'] = 'Test@test.com';\n" +
                         "       this.update().reload().then(function() {\n" +
                         "           $('#domain-user02-result').html('Successfully created and updated user ' + this.getName());  \n" +
                         "       });\n" +
@@ -1422,7 +1418,7 @@
                         "}).count(function(count) {\n" +
                         "   if ( count > 0) {\n" +
                         "       this.keepOne().then(function() { \n" +
-                        "           this.object['title'] = this.getTitle() + ' updated.';\n" +
+                        "           this['title'] = this.getTitle() + ' updated.';\n" +
                         "           this.update().reload().then(function() {\n" +
                         "               $('#application02-result').html('Successfully updated application ' + this.getTitle());  \n" +
                         "           })\n" +
@@ -1615,7 +1611,7 @@
                     "code" : "Samples.defaultClient().trap(function(error) { \n" +
                         "    Samples.defaultErrorHandler(error,'stack02');\n" +
                         "}).readStack(Samples.sampleStack).then(function() {\n" +
-                        "   this.object['title'] = this.getTitle() + ' updated.';\n" +
+                        "   this['title'] = this.getTitle() + ' updated.';\n" +
                         "   this.update().reload().then(function() {\n" +
                         "       $('#stack02-result').html('Successfully updated stack ' + this.getTitle());\n" +
                         "   })\n" +
@@ -1629,7 +1625,7 @@
                         "}).queryStacks({\n" +
                         "   'sdk_bundle': 'sdk-sample-stack'\n" +
                         "}).count(function(count) {\n" +
-                        "   $('#stack03-result').html('Found ' + count+ ' stacks whose sdk_bundle property has value \'sdk-sample-stack\'.');\n" +
+                        "   $('#stack03-result').html('Found ' + count+ ' stacks whose sdk_bundle property has value: sdk-sample-stack.');\n" +
                         "});"
                 },
                 "stack04" : {
@@ -1725,7 +1721,7 @@
                     "title" : "Authenticate with client and user credentials (username/password)",
                     "description" : "This sample shows you how to perform OAUTH authentication using the default client id/secret pair and user username/password pair. Since it exposes the client and user credentials within the application, it will be a good practice within compiled or server-side environments like Node JS or Appcelerator Titanium.",
                     "code" : "new Gitana({\n" +
-                        "   'clientId': '676e3450-6131-46c2-99cc-496aa2ad80fa',\n" +
+                        "   'clientKey': '676e3450-6131-46c2-99cc-496aa2ad80fa',\n" +
                         "   'clientSecret': '5fGkvesH/tWEMX6SpevL54rY6iJK5ADzLH963sif2ljrWvFOhV2zXv6rSpLF2uMWlJ9SG0uEO9uQO4JZac0i7DZquA/5W8ixJwhj76g0Ksk='\n" +
                         "}).authenticate({\n" +
                         "   'username': 'demo',\n" +
@@ -1741,7 +1737,7 @@
                     "title" : "Authenticate with client and authentication grant credentials (key/secret)",
                     "description" : "This sample shows you how to create an authentication grant and user its key/value pair to perform OAUTH authentication with the default client id/secret pair. The advantage of this approach over the first approach is that if we want to block client access we can just simply disable or delete the authenticate grant instead of the user itself.",
                     "code" : "new Gitana({\n" +
-                        "   'clientId': '676e3450-6131-46c2-99cc-496aa2ad80fa',\n" +
+                        "   'clientKey': '676e3450-6131-46c2-99cc-496aa2ad80fa',\n" +
                         "   'clientSecret': '5fGkvesH/tWEMX6SpevL54rY6iJK5ADzLH963sif2ljrWvFOhV2zXv6rSpLF2uMWlJ9SG0uEO9uQO4JZac0i7DZquA/5W8ixJwhj76g0Ksk='\n" +
                         "}).authenticate({\n" +
                         "   'username': Samples.sampleAuthenticationGrant.getKey(),\n" +
@@ -1760,7 +1756,7 @@
                         "looking at the originating URL of the request and matching it against domains registered for the client. " +
                         "This pattern is useful for applications running in the browser (Javascript) which cannot hold a client secret. Please note that this example will only work if it is run under the trusted domain code.cloudcms.com",
                     "code" : "new Gitana({\n" +
-                        "   'clientId': Samples.sampleOpenDriverClient.get('key'),\n" +
+                        "   'clientKey': Samples.sampleOpenDriverClient.get('key'),\n" +
                         "}).authenticate({\n" +
                         "   'username': 'demo',\n" +
                         "   'password': 'demo'\n" +
@@ -1780,7 +1776,7 @@
                         "Furthermore, if an authentication grant becomes overused, they can be shut down without compromising the " +
                         "client or its applications.",
                     "code" : "new Gitana({\n" +
-                        "   'clientId': Samples.sampleOpenDriverClient.get('key'),\n" +
+                        "   'clientKey': Samples.sampleOpenDriverClient.get('key'),\n" +
                         "}).authenticate({\n" +
                         "   'username': Samples.sampleOpenDriverAuthenticationGrant.get('key'),\n" +
                         "},function(error) {\n" +

@@ -47,10 +47,10 @@
                                     "fullName": name,
                                     "email": this.getEmail()
                                     //"avatar" : this.attachment('avatar').getDownloadUri()
-                                }
+                                };
 
                                     this.listAttachments(true).then(function() {
-                                        if (this.map["avatar"]) {
+                                        if (this["avatar"]) {
                                             this.select("avatar").then(function() {
                                                 userObj["avatar"] = this.getDownloadUri();
                                             });
@@ -123,13 +123,13 @@
                                                 "$in" : otherIds
                                             }
                                         }).each(function() {
-                                           var nodeObj = this.object;
+                                           var nodeObj = this;
                                            if (nodeObj['title']) {
                                                nodeObj['name'] = nodeObj['title'];
                                            }
 
                                            this.listAttachments(true).then(function() {
-                                                if (this.map["avatar"]) {
+                                                if (this["avatar"]) {
                                                     this.select("avatar").then(function() {
                                                         nodeObj["avatar"] = this.getDownloadUri();
                                                     });
@@ -137,7 +137,7 @@
                                            });
 
                                            //nodeObj["avatar"] = this.attachment('avatar').getDownloadUri();
-                                           nodes[this.getId()] = this.object;
+                                           nodes[this.getId()] = this;
                                         });
                                     }
                                 });
