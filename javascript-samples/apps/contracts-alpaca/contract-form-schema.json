@@ -1,0 +1,52 @@
+{
+    "description": "Contract",
+    "type": "object",
+    "properties":{
+        "name":{
+            "title": "Name",
+            "type": "string"
+        },
+        "phone":{
+            "title": "Phone",
+            "type": "string"
+        },
+        "email":{
+            "title": "Email",
+            "type": "string"
+        },
+        "member":{
+            "title": "Member",
+            "type": "boolean",
+            "enum": [false, true],
+            "default": false
+        },
+        "service": {
+            "title": "Service",
+            "type": "string",
+            "enum":[
+                "upholstery",
+                "carpet",
+                "woodfloor",
+                "airduct",
+                "ceramic"
+            ],
+            "default": "upholstery"
+        },
+        "address":{
+            "title": "Address",
+            "type": "string"
+        },
+        "city":{
+            "title": "City",
+            "type": "string"
+        },
+        "state":{
+            "title": "State",
+            "type": "string"
+        },
+        "zipcode":{
+            "title": "Zip Code",
+            "type": "string"
+        }
+    }
+}

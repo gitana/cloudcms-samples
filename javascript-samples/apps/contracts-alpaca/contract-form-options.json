@@ -1,0 +1,25 @@
+{
+	"fields" : {
+		"phone": {
+			"type": "phone"
+		},
+		"email": {
+			"type": "email"
+		},
+		"member" : {
+			"optionLabels": [
+				"I am not a member", 
+				"I am a member"
+			]
+		},
+		"service" : {
+			"optionLabels": [
+                "Upholstery Cleaning",
+                "Carpet Cleaning",
+                "Wood Floor Cleaning",
+                "Air Duct Cleaning",
+                "Ceramic Tile Cleaning"
+			]
+		}
+	}
+}

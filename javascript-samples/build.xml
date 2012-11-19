@@ -59,6 +59,7 @@
         <include name="img/**/*"/>
         <include name="js/**/*"/>
         <include name="lib/**/*"/>
+        <include name="apps/**/*"/>
         <include name="templates/**/*"/>
         <include name="schemas/**/*"/>
         <include name="forms/**/*"/>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet" href="../lib/jquerymobile/css/themes/default/jquery.mobile-1.2.0.min.css" />
+        <script src="../lib/jquerymobile/js/jquery.js"></script>
+        <script src="../lib/jquerymobile/js/jquery.mobile-1.2.0.js"></script>
+
+        <!-- Cloud CMS driver -->
+        <script src="../lib/gitana/gitana.js"></script>
+
+        <!-- Alpaca -->
+        <link rel="stylesheet" href="../lib/alpaca/css/alpaca-mobile.css" />
+        <script src="../lib/alpaca/js/alpaca.js"></script>
+
+        <!-- Utilities -->
+        <script src="../lib/utilities.js"></script>
+
+        <!-- Contracts -->
+        <script src="../contracts/contracts.js"></script>
+
+        <!-- Extend the Contracts object to use Alpaca for rendering -->
+        <script src="contracts-alpaca.js"></script>
+
+    </head>
+    <body>
+
+        <!-- Index Page -->
+        <div data-role="page" data-theme="c" data-content-theme="c" id="index">
+            <div data-role="header" data-position="fixed">
+                <a href="../index.html" data-icon="back" data-transition="slide" data-direction="reverse">Back</a>
+                <h1>Contracts Application</h1>        
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-inset="true">
+                    <li data-role="list-divider">
+                        What would you like to do?
+                    </li>
+                    <li>
+                        <a href="#list" data-transition="slide">List Contracts</a>
+                    </li>
+                    <li>
+                        <a href="#create" data-transition="slide">Create a Contract</a>
+                    </li>
+                </ul>
+            </div>
+            <div data-role="footer" data-position="fixed">
+                <h4>Copyright &copy; 2012 My Company | All Rights Reserved</h4>
+            </div>
+        </div>
+
+        <!-- List -->
+        <div data-role="page" data-theme="c" data-content-theme="c" id="list">
+
+            <div data-role="header" data-position="fixed">
+                <a href="#index" data-icon="back" data-transition="slide" data-direction="reverse">Back</a>
+                <h1>Contract List</h1>        
+            </div>
+
+            <div data-role="content">
+                <div>
+                    <input placeholder="Enter your search terms..." data-type="search" name="searchBox" id="searchBox" value="" />
+                </div>                
+                <ul data-role="listview" id="contractsList" style="margin-top: 15px"></ul>
+            </div>
+
+            <div data-role="footer" data-position="fixed">
+                <h4>Copyright &copy; 2012 My Company | All Rights Reserved</h4>
+            </div>
+
+        </div>
+
+        <!-- Edit -->
+        <div data-role="page" data-theme="c" data-content-theme="c" id="edit">
+
+            <div data-role="header" data-position="fixed">
+                <a href="#list" data-icon="back" data-transition="slide" data-direction="reverse">Back</a>
+                <h1>Edit Contract</h1>     
+                <a href="#list" data-icon="check" id="updateButton" data-direction="reverse">Save</a>
+            </div>
+
+            <div data-role="content">
+                <form data-ajax="false"></form>
+
+                <!-- Delete button -->
+                <a data-role="button" href="#" data-icon="delete" id="deleteButton" data-transition="slide" data-direction="reverse">
+                    Delete
+                </a>
+
+            </div>
+
+            <div data-role="footer" data-position="fixed">
+                <h4>Copyright &copy; 2012 My Company | All Rights Reserved</h4>
+            </div>
+
+        </div>
+
+        <!-- Create -->
+        <div data-role="page" data-theme="c" data-content-theme="c" id="create">
+
+            <div data-role="header" data-position="fixed">
+                <a href="#index" data-icon="back" data-transition="slide" data-direction="reverse">Back</a>
+                <h1>New Contract</h1>        
+                <a href="#index" data-icon="check" class="ui-btn-right" id="createButton" data-transition="slide" data-direction="reverse">Save</a>
+            </div>
+
+            <div data-role="content">
+                <form data-ajax="false"></form>
+            </div>
+
+            <div data-role="footer" data-position="fixed">
+                <h4>Copyright &copy; 2012 My Company | All Rights Reserved</h4>
+            </div>
+
+        </div>
+        
+    </body>
+</html>

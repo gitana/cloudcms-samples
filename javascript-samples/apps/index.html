@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet" href="lib/jquerymobile/css/themes/default/jquery.mobile-1.2.0.min.css" />
+        <script src="lib/jquerymobile/js/jquery.js"></script>
+        <script src="lib/jquerymobile/js/jquery.mobile-1.2.0.js"></script>
+    </head>
+    <body>
+
+        <!-- Index Page -->
+        <div data-role="page" data-theme="c" data-content-theme="c" id="index">
+            <div data-role="header" data-position="fixed">
+                <h1>Sample Applications</h1>        
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-inset="true">
+                    <li data-role="list-divider">
+                        Pick an application:
+                    </li>
+                    <li>
+                        <a href="contracts/index.html" data-transition="slide" data-ajax="false">Contracts</a>
+                    </li>
+                    <li>
+                        <a href="contracts-alpaca/index.html" data-transition="slide" data-ajax="false">Contracts (Using Alpaca Forms)</a>
+                    </li>
+                </ul>
+            </div>
+            <div data-role="footer" data-position="fixed">
+                <h4>Copyright &copy; 2012 My Company | All Rights Reserved</h4>
+            </div>
+        </div>
+        
+    </body>
+</html>
